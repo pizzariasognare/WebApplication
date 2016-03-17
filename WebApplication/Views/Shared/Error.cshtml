@@ -1,0 +1,20 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Error</title>
+</head>
+<body>
+    <hgroup>
+        <h1>Erro!</h1>
+        <h3>Ocorreu um erro de processamento na requisição. </h3>
+        <h3>Caminho: @ViewBag.Exception.StackTrace</h3>
+        <h3>Mensagem: @ViewBag.Exception.Message</h3>
+        <h3>Clique <a href="@Url.Action("Index", "Home")">aqui</a> para voltar para página principal.</h3>        
+    </hgroup>
+</body>
+</html>

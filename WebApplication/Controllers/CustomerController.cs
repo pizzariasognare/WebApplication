@@ -65,7 +65,7 @@ namespace WebApplication.Controllers
         {
             Customer customer = this.customer_service.GetCustomer(id);
 
-            if (customer == null) 
+            if (customer == null)
             {
                 return HttpNotFound("Cliente não encontrado.");
             }
@@ -84,7 +84,7 @@ namespace WebApplication.Controllers
             ReturnStatus return_status = this.customer_service.Update(customer);
             if (return_status.success)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Customer", new { id = customer.id });
             }
 
             ModelState.AddModelError("", return_status.message);
@@ -110,6 +110,78 @@ namespace WebApplication.Controllers
             ReturnStatus return_status = this.customer_service.SetEnabled(id, value);
 
             return Json(return_status);
+        }
+
+        [HttpGet]
+        public ActionResult CreateUser(int customer_id)
+        {
+            Customer customer = this.customer_service.GetCustomer(customer_id);
+
+            // Verifica se o cliente existe.
+            if (customer == null)
+            {
+                return HttpNotFound("Cliente inexistente.");
+            }
+
+            // Verifica se o cliente está habilitado.
+            if (customer.enabled == 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Cliente desabilitado.");
+            }
+
+            // Verifica se o cliente já tem usuário.
+            if (customer.user_id.HasValue)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Cliente já tem usuário.");
+            }
+
+            ViewBag.Customer = customer;
+
+            User user = new User();
+            user.profile_id = Models.Profile.CLIENTE;
+
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult CreateUser(int customer_id, User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            Customer customer = this.customer_service.GetCustomer(customer_id);
+
+            // Verifica se o cliente existe.
+            if (customer == null)
+            {
+                return HttpNotFound("Cliente inexistente.");
+            }
+
+            // Verifica se o cliente está habilitado.
+            if (customer.enabled == 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Cliente desabilitado.");
+            }
+
+            // Verifica se o cliente já tem usuário.
+            if (customer.user_id.HasValue)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Cliente já tem usuário.");
+            }
+
+            ReturnStatus return_status = this.user_service.Insert(user, customer);
+            if (return_status.success)
+            {
+                return RedirectToAction("Details", "Customer", new { id = customer.id });
+            }
+
+            ModelState.AddModelError("", return_status.message);
+
+            ViewBag.Customer = customer;
+
+            return View(user);
         }
     }
 }

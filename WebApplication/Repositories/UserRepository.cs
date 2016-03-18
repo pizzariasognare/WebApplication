@@ -27,6 +27,13 @@ namespace WebApplication.Repositories
         User GetUser(int id);
 
         /// <summary>
+        /// Método retorna o objeto usuário por email.
+        /// </summary>
+        /// <param name="email">Identificador do usuário.</param>        
+        /// <returns>Objeto usuário.</returns>
+        User GetUser(string email);
+
+        /// <summary>
         /// Método retorna uma lista de usuários.
         /// </summary>
         /// <returns>Lista de usuários.</returns>
@@ -37,6 +44,13 @@ namespace WebApplication.Repositories
         /// </summary>
         /// <returns>Status da inserção (Verdade ou falso).</returns>
         bool Insert(User user);
+
+        /// <summary>
+        /// Método atualiza um usuário.
+        /// </summary>
+        ///  <param name="user">Objeto</param>
+        /// <returns>Status da atualização (Verdade ou falso).</returns>
+        bool Update(User user);
     }
 
     public class UserRepository : IUserRepository
@@ -61,12 +75,28 @@ namespace WebApplication.Repositories
         }
 
         /// <summary>
+        /// Método retorna o objeto usuário por email.
+        /// </summary>
+        /// <param name="id">Identificador do usuário.<param>
+        /// <returns>Objeto usuário.</returns>
+        public User GetUser(string email)
+        {            
+            User user = new User();
+            using (Entities entities = new Entities())
+            {
+                user = entities.User.Where(u => u.email == email).FirstOrDefault();
+            }
+
+            return user;
+        }
+
+        /// <summary>
         /// Método retorna o objeto usuário por id.
         /// </summary>
         /// <param name="id">Identificador do usuário.<param>
         /// <returns>Objeto usuário.</returns>
         public User GetUser(int id)
-        {            
+        {
             User user = new User();
             using (Entities entities = new Entities())
             {
@@ -98,14 +128,42 @@ namespace WebApplication.Repositories
         /// <returns>Status da inserção (Verdade ou falso).</returns>
         public bool Insert(User user)
         {
-            try
-            {
+            /*try
+            { */               
                 user.password = Cryptography.ConvertToMD5(user.password);
                 user.enabled = 1;
 
                 using (Entities entities = new Entities())
                 {
                     entities.User.Add(user);
+                    entities.SaveChanges();
+                }
+
+                return true;
+            /*}
+            catch (Exception)
+            {
+                return false;
+            }*/
+        }
+
+        /// <summary>
+        /// Método atualiza um usuário.
+        /// </summary>
+        /// <returns>Status da atualização (Verdade ou falso).</returns>
+        public bool Update(User user)
+        {
+            try
+            {
+                User _user = this.GetUser(user.id);
+                if (_user.password != user.password)
+                {
+                    user.password = Cryptography.ConvertToMD5(user.password);
+                }               
+
+                using (Entities entities = new Entities())
+                {
+                    entities.Entry(user).State = EntityState.Modified;
                     entities.SaveChanges();
                 }
 

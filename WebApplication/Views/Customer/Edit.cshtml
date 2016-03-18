@@ -9,7 +9,7 @@
         <div>
             <div class="pull-right">
                 <a href="@Url.Action("Create", "Customer")" class="btn btn-primary" title="Adicionar cliente"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>&nbsp;&nbsp;
-                <a href="@Url.Action("Index", "Customer")" class="btn btn-success" title="Clientes"><span class="glyphicon glyphicon-th" aria-hidden="true"></span></a>
+                <a href="@Url.Action("Details", "Customer", new { id = Model.id })" class="btn btn-default" title="Visualizar cliente"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a>
             </div>
             <h3 class="bars">Editar Cliente</h3>
             <hr />
@@ -20,6 +20,7 @@
                 <div class="form-horizontal">
 
                     @Html.HiddenFor(model => model.id)
+                    @Html.HiddenFor(model => model.user_id)
                     @Html.HiddenFor(model => model.enabled)
 
                     <div class="form-group">

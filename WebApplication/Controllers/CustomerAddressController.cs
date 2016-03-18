@@ -53,17 +53,17 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(CustomerAddress CustomerAddress)
+        public ActionResult Create(CustomerAddress customer_address)
         {
             if (!ModelState.IsValid)
             {
                 return View();
             }
 
-            ReturnStatus return_status = this.customer_address_service.Insert(CustomerAddress);
+            ReturnStatus return_status = this.customer_address_service.Insert(customer_address);
             if (return_status.success)
             {
-                return RedirectToAction("Details", "Customer", new { id = CustomerAddress.customer_id });
+                return RedirectToAction("Details", "Customer", new { id = customer_address.customer_id });
             }
 
             ModelState.AddModelError("", return_status.message);
@@ -87,17 +87,17 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(CustomerAddress CustomerAddress)
+        public ActionResult Edit(CustomerAddress customer_address)
         {
             if (!ModelState.IsValid)
             {
                 return View();
             }
 
-            ReturnStatus return_status = this.customer_address_service.Update(CustomerAddress);
+            ReturnStatus return_status = this.customer_address_service.Update(customer_address);
             if (return_status.success)
             {
-                return RedirectToAction("Details", "Customer", new { id = CustomerAddress.customer_id });
+                return RedirectToAction("Details", "Customer", new { id = customer_address.customer_id });
             }
 
             ModelState.AddModelError("", return_status.message);

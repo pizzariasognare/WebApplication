@@ -13,7 +13,7 @@ namespace WebApplication.Models
         public DbSet<Profile> Profile { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<Customer> Customer { get; set; }
-
         public DbSet<CustomerAddress> CustomerAddress { get; set; }
+        public DbSet<Employer> Employer { get; set; }
     }
 }

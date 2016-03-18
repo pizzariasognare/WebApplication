@@ -16,14 +16,20 @@ namespace WebApplication
             routes.MapRoute(
                 name: "CustomerAddressCreate",
                 url: "CustomerAddress/Create/{customer_id}",
-                defaults: new { controller = "CustomerAddress", action = "Create" } 
-            );   
+                defaults: new { controller = "CustomerAddress", action = "Create" }
+            );
+
+            routes.MapRoute(
+                name: "CustomerCreateUser",
+                url: "Customer/CreateUser/{customer_id}",
+                defaults: new { controller = "Customer", action = "CreateUser" }
+            );
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );            
+            );
         }
     }
 }

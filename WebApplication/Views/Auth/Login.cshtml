@@ -1,7 +1,7 @@
 ﻿@model WebApplication.Models.Auth
 
 @{
-    Layout = Layout = "~/Views/Shared/_LoginLayout.cshtml";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
     ViewBag.Title = "Login";
 }
 
@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.password, "Senha", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    <div class="col-md-5">
                         @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", @maxlength = "50" } })
                         @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
                     </div>

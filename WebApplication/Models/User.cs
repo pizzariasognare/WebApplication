@@ -16,7 +16,6 @@ namespace WebApplication.Models
         public int id { get; set; }
 
         [Required(ErrorMessage = "O perfil do usuário é obrigatório.")]
-
         public int profile_id { get; set; }
 
         [DataType(DataType.EmailAddress)]

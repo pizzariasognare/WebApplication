@@ -24,6 +24,13 @@ namespace WebApplication.Repositories
         Customer GetCustomer(int id);
 
         /// <summary>
+        /// Método retorna um cliente por usuário.
+        /// </summary>
+        /// <param name="id">Identificador do usuário</param>
+        /// <returns>Objeto</returns>
+        Customer GetCustomerByUserId(int user_id);
+
+        /// <summary>
         /// Método verifica se existe algum cliente com o telefone.
         /// </summary>
         /// <param name="phone">Telefone do cliente</param>
@@ -84,6 +91,35 @@ namespace WebApplication.Repositories
                         UserRepository user_serivce = new UserRepository();
                         customer.User = user_serivce.GetUser(customer.user_id.Value);
                     }                    
+
+                    CustomerAddressRepository customer_address_repository = new CustomerAddressRepository();
+                    customer.CustomerAddress = customer_address_repository.GetCustomerAddresses(customer.id);
+                }
+            }
+
+            return customer;
+        }
+
+        /// <summary>
+        /// Método retorna um cliente.
+        /// </summary>
+        /// <param name="id">Identificador do usuário</param>
+        /// <returns>Objeto</returns>
+        public Customer GetCustomerByUserId(int user_id)
+        {
+            Customer customer = new Customer();
+
+            using (Entities entities = new Entities())
+            {
+                customer = entities.Customer.Where(c => c.user_id == user_id).FirstOrDefault();
+
+                if (customer != null)
+                {
+                    if (customer.user_id.HasValue)
+                    {
+                        UserRepository user_serivce = new UserRepository();
+                        customer.User = user_serivce.GetUser(customer.user_id.Value);
+                    }
 
                     CustomerAddressRepository customer_address_repository = new CustomerAddressRepository();
                     customer.CustomerAddress = customer_address_repository.GetCustomerAddresses(customer.id);

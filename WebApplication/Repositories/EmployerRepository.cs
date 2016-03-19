@@ -83,7 +83,7 @@ namespace WebApplication.Repositories
                     {
                         UserRepository user_serivce = new UserRepository();
                         employer.User = user_serivce.GetUser(employer.user_id.Value);
-                    }
+                    }                    
                 }
             }
 

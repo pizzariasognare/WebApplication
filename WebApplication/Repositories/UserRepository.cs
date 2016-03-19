@@ -55,6 +55,8 @@ namespace WebApplication.Repositories
 
     public class UserRepository : IUserRepository
     {
+        private ProfileRepository profile_repository = new ProfileRepository();
+
         /// <summary>
         /// Método retorna o objeto usuário por email e senha.
         /// </summary>
@@ -69,6 +71,11 @@ namespace WebApplication.Repositories
             using (Entities entities = new Entities())
             {
                 user = entities.User.Where(u => (u.email == email && u.password == password && u.enabled == (enabled ? 1 : 0))).FirstOrDefault();
+
+                if (user != null)
+                {
+                    user.Profile = this.profile_repository.GetProfile(user.profile_id);
+                }
             }
 
             return user;
@@ -80,11 +87,16 @@ namespace WebApplication.Repositories
         /// <param name="id">Identificador do usuário.<param>
         /// <returns>Objeto usuário.</returns>
         public User GetUser(string email)
-        {            
+        {
             User user = new User();
             using (Entities entities = new Entities())
             {
                 user = entities.User.Where(u => u.email == email).FirstOrDefault();
+
+                if (user != null)
+                {
+                    user.Profile = this.profile_repository.GetProfile(user.profile_id);
+                }
             }
 
             return user;
@@ -101,6 +113,11 @@ namespace WebApplication.Repositories
             using (Entities entities = new Entities())
             {
                 user = entities.User.Where(u => u.id == id).FirstOrDefault();
+
+                if (user != null)
+                {
+                    user.Profile = this.profile_repository.GetProfile(user.profile_id);
+                }
             }
 
             return user;
@@ -129,7 +146,7 @@ namespace WebApplication.Repositories
         public bool Insert(User user)
         {
             try
-            {                
+            {
                 user.password = Cryptography.ConvertToMD5(user.password);
                 user.enabled = 1;
 
@@ -159,7 +176,7 @@ namespace WebApplication.Repositories
                 if (_user.password != user.password)
                 {
                     user.password = Cryptography.ConvertToMD5(user.password);
-                }               
+                }
 
                 using (Entities entities = new Entities())
                 {

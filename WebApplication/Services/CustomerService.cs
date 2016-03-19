@@ -23,6 +23,13 @@ namespace WebApplication.Services
         Customer GetCustomer(int id);
 
         /// <summary>
+        /// Método retorna um cliente por usuário.
+        /// </summary>
+        /// <param name="id">Identificador do usuário</param>
+        /// <returns>Objeto</returns>
+        Customer GetCustomerByUserId(int user_id);
+
+        /// <summary>
         /// Método insere um cliente.
         /// </summary>
         /// <param name="customer">Objeto cliente</param>
@@ -61,6 +68,15 @@ namespace WebApplication.Services
         public Customer GetCustomer(int id)
         {
             return this.customer_repository.GetCustomer(id);
+        }
+
+        /// <summary>
+        /// Método retorna um cliente por usuário.
+        /// </summary>
+        /// <returns>Objeto</returns>
+        public Customer GetCustomerByUserId(int user_id)
+        {
+            return this.customer_repository.GetCustomerByUserId(user_id);
         }
 
         /// <summary>

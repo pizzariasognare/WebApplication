@@ -24,7 +24,7 @@ namespace WebApplication.Models
         [Required(ErrorMessage = "O logradouro é obrigatório.")]
         public string address { get; set; }
 
-        public int number { get; set; }
+        public int? number { get; set; }
 
         public string complement { get; set; }
 

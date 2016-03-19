@@ -32,7 +32,7 @@ namespace WebApplication.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View(this.customer_service.GetCustomers());
+            return View(this.customer_service.GetCustomers());            
         }
 
         [HttpGet]
@@ -145,7 +145,7 @@ namespace WebApplication.Controllers
 
         [HttpPost]
         public ActionResult CreateUser(int customer_id, User user)
-        {            
+        {
             Customer customer = this.customer_service.GetCustomer(customer_id);
 
             // Verifica se o cliente existe.
@@ -179,7 +179,7 @@ namespace WebApplication.Controllers
                 return RedirectToAction("Details", "Customer", new { id = customer.id });
             }
 
-            ModelState.AddModelError("", return_status.message);            
+            ModelState.AddModelError("", return_status.message);
 
             return View(user);
         }
@@ -208,7 +208,7 @@ namespace WebApplication.Controllers
 
         [HttpPost]
         public ActionResult EditUser(int customer_id, User user)
-        {            
+        {
             Customer customer = this.customer_service.GetCustomer(customer_id);
 
             // Verifica se o cliente existe.
@@ -221,7 +221,7 @@ namespace WebApplication.Controllers
             if (customer.enabled == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Cliente desabilitado.");
-            }            
+            }
 
             ReturnStatus return_status = this.user_service.Update(user);
             if (return_status.success)
@@ -234,9 +234,9 @@ namespace WebApplication.Controllers
             if (!ModelState.IsValid)
             {
                 return View();
-            }            
+            }
 
-            ModelState.AddModelError("", return_status.message);            
+            ModelState.AddModelError("", return_status.message);
 
             return View(user);
         }

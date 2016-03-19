@@ -22,6 +22,7 @@ namespace WebApplication.Models
         [Required(ErrorMessage = "O e-mail é obrigatório.")]
         public string email { get; set; }
 
+        [DataType(DataType.Password)]
         [Required(ErrorMessage = "O senha é obrigatória.")]
         public string password { get; set; }
 

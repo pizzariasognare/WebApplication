@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
-    $('.datatable').DataTable({
+    $('.datatable').DataTable({        
+        bLengthChange: false,
         language: {
             "sEmptyTable": "Nenhum registro encontrado",
             "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",

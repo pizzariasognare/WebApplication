@@ -186,6 +186,7 @@
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CustomerAddressController.cs" />
+    <Compile Include="Controllers\EmployerController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -260,7 +261,10 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Content\dataTables.bootstrap.min.css" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Employer\Edit.js" />
+    <Content Include="Scripts\Employer\EditUser.js" />
     <Content Include="Scripts\CustomerAddress\Edit.js" />
+    <Content Include="Scripts\Customer\EditUser.js" />
     <Content Include="Scripts\Customer\Edit.js" />
     <Content Include="Scripts\dataTables.bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -296,12 +300,14 @@
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\CustomerAddress\Create.cshtml" />
     <Content Include="Views\CustomerAddress\Edit.cshtml" />
-    <Content Include="Views\Users\Create.cshtml" />
-    <Content Include="Views\Users\Delete.cshtml" />
-    <Content Include="Views\Users\Details.cshtml" />
-    <Content Include="Views\Users\Edit.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Customer\CreateUser.cshtml" />
+    <Content Include="Views\Customer\EditUser.cshtml" />
+    <Content Include="Views\Employer\Create.cshtml" />
+    <Content Include="Views\Employer\CreateUser.cshtml" />
+    <Content Include="Views\Employer\Details.cshtml" />
+    <Content Include="Views\Employer\Edit.cshtml" />
+    <Content Include="Views\Employer\EditUser.cshtml" />
+    <Content Include="Views\Employer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -26,6 +26,24 @@ namespace WebApplication
             );
 
             routes.MapRoute(
+                name: "CustomerEditUser",
+                url: "Customer/EditUser/{customer_id}",
+                defaults: new { controller = "Customer", action = "EditUser" }
+            );
+
+            routes.MapRoute(
+                name: "EmployerCreateUser",
+                url: "Employer/CreateUser/{employer_id}",
+                defaults: new { controller = "Employer", action = "CreateUser" }
+            );
+
+            routes.MapRoute(
+                name: "EmployerEditUser",
+                url: "Employer/EditUser/{employer_id}",
+                defaults: new { controller = "Employer", action = "EditUser" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

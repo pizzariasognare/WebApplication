@@ -1,29 +1,22 @@
-﻿@model WebApplication.Models.Customer
+﻿@model WebApplication.Models.Employer
 
 @{
-    ViewBag.Title = "Editar Cliente";
+    ViewBag.Title = "Adicionar Funcionário";
 }
 
 <div class="row">
     <div class="col-md-12">
         <div>
             <div class="pull-right">
-                <a href="@Url.Action("Create", "Customer")" class="btn btn-primary" title="Adicionar cliente"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>&nbsp;&nbsp;
-
-                <a href="@Url.Action("Details", "Customer", new { id = Model.id })" class="btn btn-default" title="Visualizar cliente"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
+                <a href="@Url.Action("Index", "Employer")" class="btn btn-success" title="Visualizar funcionários"><span class="glyphicon glyphicon-th" aria-hidden="true"></span></a>
             </div>
-            <h3 class="bars">Editar Cliente</h3>
+            <h3 class="bars">Adicionar Funcionário</h3>
             <hr />
         </div>
         <div>
             @using (Html.BeginForm())
             {
                 <div class="form-horizontal">
-
-                    @Html.HiddenFor(model => model.id)
-                    @Html.HiddenFor(model => model.user_id)
-                    @Html.HiddenFor(model => model.enabled)
-
                     <div class="form-group">
                         @Html.LabelFor(model => model.name, "Nome", htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
@@ -38,23 +31,7 @@
                             @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control", @maxlength = "11", @type="number" } })
                             @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.birth_date, "Data de Nascimento", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-3">
-                            @Html.EditorFor(model => model.birth_date, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.birth_date, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.enabled, "Habilitado", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-3">                            
-                            @Html.CheckBox("enabled-ckb", htmlAttributes: new { @style = "margin-top:12px;" })
-                            @Html.ValidationMessageFor(model => model.enabled, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+                    </div>                    
 
                     <div class="form-group pull-right">
                         <div class="col-md-offset-2 col-md-10">
@@ -69,5 +46,3 @@
         </div>
     </div>
 </div>
-
-@Scripts.Render("~/Scripts/Customer/Edit.js")

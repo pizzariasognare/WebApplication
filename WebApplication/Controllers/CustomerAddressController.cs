@@ -44,10 +44,10 @@ namespace WebApplication.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Cliente desabilitado.");
             }
 
+            ViewBag.Customer = customer;
+
             CustomerAddress customer_address = new CustomerAddress();
             customer_address.customer_id = customer.id;
-
-            ViewBag.Customer = customer;
 
             return View(customer_address);
         }
@@ -55,6 +55,20 @@ namespace WebApplication.Controllers
         [HttpPost]
         public ActionResult Create(CustomerAddress customer_address)
         {
+            Customer customer = this.customer_service.GetCustomer(customer_address.customer_id);
+
+            if (customer == null)
+            {
+                return HttpNotFound("Cliente não encontrado.");
+            }
+
+            if (customer.enabled == 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Cliente desabilitado.");
+            }
+
+            ViewBag.Customer = customer;
+
             if (!ModelState.IsValid)
             {
                 return View();
@@ -81,7 +95,19 @@ namespace WebApplication.Controllers
                 return HttpNotFound("Endereço do cliente não encontrado.");
             }
 
-            ViewBag.Customer = this.customer_service.GetCustomer(customer_address.customer_id);
+            Customer customer = this.customer_service.GetCustomer(customer_address.customer_id);
+
+            if (customer == null)
+            {
+                return HttpNotFound("Cliente não encontrado.");
+            }
+
+            if (customer.enabled == 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Cliente desabilitado.");
+            }
+
+            ViewBag.Customer = customer;
 
             return View(customer_address);
         }
@@ -89,6 +115,20 @@ namespace WebApplication.Controllers
         [HttpPost]
         public ActionResult Edit(CustomerAddress customer_address)
         {
+            Customer customer = this.customer_service.GetCustomer(customer_address.customer_id);
+
+            if (customer == null)
+            {
+                return HttpNotFound("Cliente não encontrado.");
+            }
+
+            if (customer.enabled == 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Cliente desabilitado.");
+            }
+
+            ViewBag.Customer = customer;
+
             if (!ModelState.IsValid)
             {
                 return View();

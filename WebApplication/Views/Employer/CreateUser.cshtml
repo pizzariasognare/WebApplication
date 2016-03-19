@@ -8,16 +8,16 @@
     <div class="col-md-12">
         <div>
             <div class="pull-right">
-                <a href="@Url.Action("Details", "Customer", new { id = ViewBag.Customer.id })" class="btn btn-default" title="Visualizar cliente"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
+                <a href="@Url.Action("Details", "Employer", new { id = ViewBag.Employer.id })" class="btn btn-default" title="Visualizar Funcionário"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
             </div>
             <h3 class="bars">Adicionar Usuário</h3>
-            <h4>Cliente @ViewBag.Customer.name</h4>
+            <h4>Funcionário @ViewBag.Employer.name</h4>
             <hr />
         </div>
         <div>
             @using (Html.BeginForm())
             {
-                <input type="hidden" id="customer_id" name="customer_id" value="@ViewBag.Customer.id" />
+                <input type="hidden" id="employer_id" name="employer_id" value="@ViewBag.Employer.id" />
                 <input type="hidden" id="profile_id" name="profile_id" value="@Model.profile_id" />
 
                 <div class="form-horizontal">

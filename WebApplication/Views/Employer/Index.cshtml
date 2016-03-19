@@ -1,16 +1,16 @@
-﻿@model IList<WebApplication.Models.Customer>
+﻿@model IList<WebApplication.Models.Employer>
 
 @{
-    ViewBag.Title = "Clientes";
+    ViewBag.Title = "Funcionários";
 }
 
 <div class="row">
     <div class="col-md-12">
         <div>
             <div class="pull-right">
-                <a href="@Url.Action("Create", "Customer")" class="btn btn-primary" title="Adicionar cliente"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+                <a href="@Url.Action("Create", "Employer")" class="btn btn-primary" title="Adicionar funcionário"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
             </div>
-            <h3 class="bars">Clientes</h3>
+            <h3 class="bars">Funcionários</h3>
             <hr />
         </div>
         <div>
@@ -37,7 +37,7 @@
                                 @Html.DisplayFor(modelItem => item.phone)
                             </td>
                             <td>
-                                <a href="@Url.Action("Details", "Customer", new { id = item.id })" class="btn btn-default" title="Visualizar cliente"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
+                                <a href="@Url.Action("Details", "Employer", new { id = item.id })" class="btn btn-default" title="Visualizar funcionário"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
                             </td>
                         </tr>
                     }
@@ -45,7 +45,7 @@
                     @if (Model.Count() == 0)
                     {
                         <tr>
-                            <td colspan="4">Nenhum cliente encontrado.</td>
+                            <td colspan="4">Nenhum Funcionário encontrado.</td>
                         </tr>
                     }
                 </tbody>

@@ -26,8 +26,18 @@ namespace WebApplication.Services
         /// <summary>
         /// Método insere um usuário para o cliente.
         /// </summary>
+        /// <param name="user">Usuário</param>
+        /// <param name="customer">Cliente</param>
         /// <returns>Status da inserção (Verdade ou falso).</returns>
         ReturnStatus Insert(User user, Customer customer);
+
+        /// <summary>
+        /// Método insere um usuário para o trabalhador.
+        /// </summary>
+        /// <param name="user">Usuário</param>
+        /// <param name="employer">Funcionário</param>
+        /// <returns>Status da inserção (Verdade ou falso).</returns>
+        ReturnStatus Insert(User user, Employer employer);
 
         /// <summary>
         /// Método atualiza um usuário.
@@ -40,11 +50,13 @@ namespace WebApplication.Services
     {
         private IUserRepository user_repository;
         private ICustomerService customer_service;
+        private IEmployerService employer_service;
 
         public UserService(IUserRepository user_repository)
         {
             this.user_repository = user_repository;
             this.customer_service = new CustomerService(new CustomerRepository());
+            this.employer_service = new EmployerService(new EmployerRepository());
         }
 
         /// <summary>
@@ -67,6 +79,48 @@ namespace WebApplication.Services
         public List<User> GetUsers()
         {
             return this.user_repository.GetUsers();
+        }
+
+        /// <summary>
+        /// Método insere um usuário para um funcionário.
+        /// </summary>
+        /// <param name="user">Usuário</param>
+        /// <param name="customer">Cliente</param>
+        /// <returns>Status da inserção (Verdade ou falso).</returns>
+        public ReturnStatus Insert(User user, Employer employer)
+        {
+            ReturnStatus return_status = new ReturnStatus();
+
+            // Verifica se email já existe.
+            User _user = this.user_repository.GetUser(user.email);
+            if (_user != null)
+            {
+                return_status.message = "E-mail já pertence a outro usuário.";
+                return return_status;
+            }
+
+            // Insere o usuário.
+            if (this.user_repository.Insert(user))
+            {
+                // Vincula usuário a cliente.
+                _user = this.user_repository.GetUser(user.email);
+                employer.user_id = _user.id;
+
+                return_status = this.employer_service.Update(employer);
+                if (!return_status.success)
+                {
+                    return return_status;
+                }
+            }
+            else
+            {
+                return_status.message = "Erro ao adicionar usuário.";
+                return return_status;
+            }
+
+            return_status.success = true;
+            return_status.message = "Usuário cadastro com sucesso";
+            return return_status;
         }
 
         /// <summary>

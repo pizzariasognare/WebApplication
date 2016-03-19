@@ -128,8 +128,8 @@ namespace WebApplication.Repositories
         /// <returns>Status da inserção (Verdade ou falso).</returns>
         public bool Insert(User user)
         {
-            /*try
-            { */               
+            try
+            {                
                 user.password = Cryptography.ConvertToMD5(user.password);
                 user.enabled = 1;
 
@@ -140,11 +140,11 @@ namespace WebApplication.Repositories
                 }
 
                 return true;
-            /*}
+            }
             catch (Exception)
             {
                 return false;
-            }*/
+            }
         }
 
         /// <summary>

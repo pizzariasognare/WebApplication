@@ -30,6 +30,13 @@ namespace WebApplication.Services
         ReturnStatus Insert(Employer employer);
 
         /// <summary>
+        /// Método insere um funcionário e um usuário.
+        /// </summary>
+        /// <param name="Employer">Objeto funcionário</param>
+        /// <returns>Objeto</returns>
+        ReturnStatus Insert(EmployerUser employer_user);
+
+        /// <summary>
         /// Método atualiza um funcionário.
         /// </summary>
         /// <param name="Employer">Objeto funcionário</param>
@@ -48,10 +55,12 @@ namespace WebApplication.Services
     public class EmployerService : IEmployerService
     {
         private IEmployerRepository employer_repository;
+        private IUserService user_service;
 
         public EmployerService(IEmployerRepository employer_repository)
         {
             this.employer_repository = employer_repository;
+            this.user_service = new UserService(new UserRepository());
         }
 
         /// <summary>
@@ -78,7 +87,7 @@ namespace WebApplication.Services
         /// <returns>Status da inserção (Verdade ou falso)</returns>
         public ReturnStatus Insert(Employer employer)
         {
-            ReturnStatus return_status = new ReturnStatus();            
+            ReturnStatus return_status = new ReturnStatus();
 
             // Verifica se o telefone pertence a outro funcionários.
             if (this.employer_repository.Exists(employer.phone, employer.id))
@@ -95,6 +104,30 @@ namespace WebApplication.Services
 
             return_status.success = true;
             return_status.message = "Funcionário adicionado com sucesso.";
+            return return_status;
+        }
+
+        /// <summary>
+        /// Método insere um funcionários
+        /// </summary>
+        /// <returns>Status da inserção (Verdade ou falso)</returns>
+        public ReturnStatus Insert(EmployerUser employer_user)
+        {
+            ReturnStatus return_status = new ReturnStatus();
+
+            return_status = this.user_service.Insert(employer_user.User);
+            if (return_status.success)
+            {
+                employer_user.Employer.user_id = this.user_service.GetUser(employer_user.User.email).id;
+                if (this.employer_repository.Insert(employer_user.Employer))
+                {
+                    return_status.success = true;
+                    return_status.message = "Funcionário adicionado com sucesso";
+                    return return_status;
+                }
+            }
+
+            return_status.message = "Erro ao adicionar funcionário.";
             return return_status;
         }
 

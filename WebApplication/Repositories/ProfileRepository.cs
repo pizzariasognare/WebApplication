@@ -16,6 +16,12 @@ namespace WebApplication.Repositories
         List<Profile> GetProfiles();
 
         /// <summary>
+        /// Método retorna uma lista de perfis diferente de cliente.
+        /// </summary>
+        /// <returns>Lista de perfis.</returns>
+        List<Profile> GetNotCustomerProfiles();
+
+        /// <summary>
         /// Método verifica se o perfil existe.
         /// </summary>
         /// <returns>Verdadeiro ou falso.</returns>
@@ -39,6 +45,22 @@ namespace WebApplication.Repositories
 
             return profiles;
         }
+
+        /// <summary>
+        /// Método retorna uma lista de perfis.
+        /// </summary>
+        /// <returns>Lista de perfis.</returns>
+        public List<Profile> GetNotCustomerProfiles()
+        {
+            List<Models.Profile> profiles = new List<Profile>();
+
+            using (Entities entities = new Entities())
+            {
+                profiles = entities.Profile.Where(p => p.id != Models.Profile.CLIENTE).OrderBy(p => p.name).ToList();
+            }
+
+            return profiles;
+        }        
 
         /// <summary>
         /// Método verifica se o perfil existe.

@@ -16,11 +16,13 @@ namespace WebApplication.Controllers
     {
         private IEmployerService employer_service;
         private IUserService user_service;
+        private IProfileService profile_service;
 
         public EmployerController()
         {
             this.employer_service = new EmployerService(new EmployerRepository());
             this.user_service = new UserService(new UserRepository());
+            this.profile_service = new ProfileService(new ProfileRepository());
         }
 
         public EmployerController(IEmployerService employer_service, IUserService user_service)
@@ -38,18 +40,37 @@ namespace WebApplication.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            EmployerUser employer_user = new EmployerUser();
+
+            ViewBag.profile_id = new SelectList
+                (
+                    this.profile_service.GetNotCustomerProfiles(),
+                    "id",
+                    "name"
+                );
+
+            return View(employer_user);
         }
 
         [HttpPost]
-        public ActionResult Create(Employer employer)
+        public ActionResult Create(EmployerUser employer_user, string profile_id)
         {
+            ViewBag.profile_id = new SelectList
+               (
+                   this.profile_service.GetNotCustomerProfiles(),
+                   "id",
+                   "name",
+                   profile_id
+               );
+
             if (!ModelState.IsValid)
             {
-                return View();
+                return View(employer_user);
             }
 
-            ReturnStatus return_status = this.employer_service.Insert(employer);
+            employer_user.User.profile_id = Convert.ToInt32(profile_id);
+
+            ReturnStatus return_status = this.employer_service.Insert(employer_user);
             if (return_status.success)
             {
                 return RedirectToAction("Index");
@@ -113,77 +134,6 @@ namespace WebApplication.Controllers
         }
 
         [HttpGet]
-        public ActionResult CreateUser(int employer_id)
-        {
-            Employer employer = this.employer_service.GetEmployer(employer_id);
-
-            // Verifica se o Funcionário existe.
-            if (employer == null)
-            {
-                return HttpNotFound("Funcionário inexistente.");
-            }
-
-            // Verifica se o Funcionário está habilitado.
-            if (employer.enabled == 0)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Funcionário desabilitado.");
-            }
-
-            // Verifica se o Funcionário já tem usuário.
-            if (employer.user_id.HasValue)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Funcionário já tem usuário.");
-            }
-
-            ViewBag.Employer = employer;
-
-            User user = new User();            
-
-            return View(user);
-        }
-
-        [HttpPost]
-        public ActionResult CreateUser(int employer_id, User user)
-        {            
-            Employer employer = this.employer_service.GetEmployer(employer_id);
-
-            // Verifica se o Funcionário existe.
-            if (employer == null)
-            {
-                return HttpNotFound("Funcionário inexistente.");
-            }
-
-            // Verifica se o Funcionário está habilitado.
-            if (employer.enabled == 0)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Funcionário desabilitado.");
-            }
-
-            // Verifica se o Funcionário já tem usuário.
-            if (employer.user_id.HasValue)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Funcionário já tem usuário.");
-            }            
-
-            ViewBag.Employer = employer;
-
-            if (!ModelState.IsValid)
-            {
-                return View(user);
-            }
-
-            ReturnStatus return_status = this.user_service.Insert(user, employer);
-            if (return_status.success)
-            {
-                return RedirectToAction("Details", "Employer", new { id = employer.id });
-            }
-
-            ModelState.AddModelError("", return_status.message);            
-
-            return View(user);
-        }
-
-        [HttpGet]
         public ActionResult EditUser(int employer_id)
         {
             Employer employer = this.employer_service.GetEmployer(employer_id);
@@ -207,14 +157,14 @@ namespace WebApplication.Controllers
 
         [HttpPost]
         public ActionResult EditUser(int employer_id, User user)
-        {            
+        {
             Employer employer = this.employer_service.GetEmployer(employer_id);
 
             // Verifica se o Funcionário existe.
             if (employer == null)
             {
                 return HttpNotFound("Funcionário inexistente.");
-            }            
+            }
 
             // Verifica se o Funcionário está habilitado.
             if (employer.enabled == 0)
@@ -235,7 +185,7 @@ namespace WebApplication.Controllers
                 return RedirectToAction("Details", "Employer", new { id = employer.id });
             }
 
-            ModelState.AddModelError("", return_status.message);            
+            ModelState.AddModelError("", return_status.message);
 
             return View(user);
         }

@@ -196,6 +196,7 @@
     <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\DTO\Auth.cs" />
     <Compile Include="Models\CustomerAddress.cs" />
+    <Compile Include="Models\DTO\EmployerUser.cs" />
     <Compile Include="Models\Employer.cs" />
     <Compile Include="Models\Entities.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -295,19 +296,18 @@
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Customer\Create.cshtml" />
     <Content Include="Views\Customer\Details.cshtml" />
-    <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\CustomerAddress\Create.cshtml" />
     <Content Include="Views\CustomerAddress\Edit.cshtml" />
     <Content Include="Views\Customer\CreateUser.cshtml" />
-    <Content Include="Views\Customer\EditUser.cshtml" />
     <Content Include="Views\Employer\Create.cshtml" />
-    <Content Include="Views\Employer\CreateUser.cshtml" />
     <Content Include="Views\Employer\Details.cshtml" />
     <Content Include="Views\Employer\Edit.cshtml" />
     <Content Include="Views\Employer\EditUser.cshtml" />
     <Content Include="Views\Employer\Index.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Customer\EditUser.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

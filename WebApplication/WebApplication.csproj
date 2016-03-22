@@ -189,6 +189,7 @@
     <Compile Include="Controllers\EmployerController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PizzaController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -201,6 +202,11 @@
     <Compile Include="Models\Entities.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\DTO\ReturnStatus.cs" />
+    <Compile Include="Models\Ingredient.cs" />
+    <Compile Include="Models\PizzaFlavorIngredient.cs" />
+    <Compile Include="Models\PizzaSize.cs" />
+    <Compile Include="Models\PizzaFlavor.cs" />
+    <Compile Include="Models\Pizza.cs" />
     <Compile Include="Models\ZipCode.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Profile.cs" />
@@ -208,12 +214,18 @@
     <Compile Include="Repositories\CustomerAddressRepository.cs" />
     <Compile Include="Repositories\EmployerRepository.cs" />
     <Compile Include="Repositories\CustomerRepository.cs" />
+    <Compile Include="Repositories\PizzaFlavorRepository.cs" />
+    <Compile Include="Repositories\IngredientRepository.cs" />
+    <Compile Include="Repositories\PizzaSizeRepository.cs" />
+    <Compile Include="Repositories\PizzaRepository.cs" />
     <Compile Include="Repositories\ZipCodeRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\ProfileRepository.cs" />
     <Compile Include="Services\CustomerAddressService.cs" />
     <Compile Include="Services\EmployerService.cs" />
     <Compile Include="Services\CustomerService.cs" />
+    <Compile Include="Services\PizzaFlavorService.cs" />
+    <Compile Include="Services\PizzaService.cs" />
     <Compile Include="Services\ZipCodeService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\ProfileService.cs" />
@@ -311,6 +323,7 @@
     <Content Include="Views\Employer\Index.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Customer\EditUser.cshtml" />
+    <Content Include="Views\PizzaFlavor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -193,7 +193,7 @@ ENGINE = InnoDB;
 -- Table `sognare`.`Pizza`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sognare`.`Pizza` (
-  `id` INT UNSIGNED ZEROFILL NOT NULL COMMENT '',
+  `id` INT UNSIGNED NOT NULL COMMENT '',
   `pizza_flavor_id` INT UNSIGNED NOT NULL COMMENT '',
   `pizza_size_id` INT UNSIGNED NOT NULL COMMENT '',
   `price` DECIMAL(15,2) NOT NULL COMMENT '',

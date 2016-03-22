@@ -41,7 +41,12 @@ namespace WebApplication.Repositories
 
     public class CustomerAddressRepository : ICustomerAddressRepository
     {
-        private ZipCodeRepository zip_code_repository = new ZipCodeRepository();
+        private ZipCodeRepository zip_code_repository;
+
+        public CustomerAddressRepository()
+        {
+            this.zip_code_repository = new ZipCodeRepository();
+        }        
 
         /// <summary>
         /// Método insere um endereço de um cliente.

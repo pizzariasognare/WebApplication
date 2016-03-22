@@ -52,10 +52,15 @@ namespace WebApplication.Repositories
         /// <returns>Status da atualização (Verdade ou falso).</returns>
         bool Update(User user);
     }
-
     public class UserRepository : IUserRepository
     {
-        private ProfileRepository profile_repository = new ProfileRepository();
+        private ProfileRepository profile_repository;
+
+        public UserRepository()
+        { 
+            this.profile_repository = new ProfileRepository();
+        }
+
 
         /// <summary>
         /// Método retorna o objeto usuário por email e senha.

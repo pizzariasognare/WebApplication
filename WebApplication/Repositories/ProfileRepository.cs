@@ -42,7 +42,7 @@ namespace WebApplication.Repositories
         /// <returns>Lista de perfis.</returns>
         public List<Profile> GetProfiles()
         {
-            List<Models.Profile> profiles = new List<Profile>();
+            List<Profile> profiles = new List<Profile>();
 
             using (Entities entities = new Entities())
             {

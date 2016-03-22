@@ -18,10 +18,12 @@ namespace WebApplication.Models
         [Required(ErrorMessage = "O perfil do usuário é obrigatório.")]
         public int profile_id { get; set; }
 
+        [MaxLength(100)]
         [DataType(DataType.EmailAddress)]
         [Required(ErrorMessage = "O e-mail é obrigatório.")]
         public string email { get; set; }
 
+        [MaxLength(50)]
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "O senha é obrigatória.")]
         public string password { get; set; }

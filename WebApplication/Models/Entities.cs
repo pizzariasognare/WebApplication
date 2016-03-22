@@ -15,5 +15,6 @@ namespace WebApplication.Models
         public DbSet<Customer> Customer { get; set; }
         public DbSet<CustomerAddress> CustomerAddress { get; set; }
         public DbSet<Employer> Employer { get; set; }
+        public DbSet<ZipCode> ZipCode { get; set; }
     }
 }

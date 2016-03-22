@@ -1,5 +1,5 @@
 ﻿html, body {
-    font-size: 100%;
+    font-size: 95%;
     background: #fff;
     font-family: 'Open Sans', sans-serif;
 }
@@ -36,15 +36,16 @@ body a:hover {
 }
 /*-- logo --*/
 .logo {
-    background: #E0BD62;
+    background-image: url(../Images/logo.png);
+    background-repeat: no-repeat;    
     width: 200px;
-    height: 200px;
-    border-radius: 100%;
+    height: 100px;
+    /*border-radius: 100%;
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
     -o-border-radius: 100%;
     -ms-border-radius: 100%;
-    text-align: center;
+    text-align: center;*/
 }
 
     .logo h1 a {
@@ -1560,7 +1561,7 @@ h2.typoh2 {
 
     .logo {
         width: 180px;
-        height: 180px;
+        height: 110px;
     }
 
     .top-nav {
@@ -1845,7 +1846,7 @@ h2.typoh2 {
 @media (max-width:667px) {
     .logo {
         width: 146px;
-        height: 146px;
+        height: 73px;
     }
 
         .logo h1 a {
@@ -1865,7 +1866,7 @@ h2.typoh2 {
 @media (max-width: 640px) {
     .logo {
         width: 140px;
-        height: 140px;
+        height: 90px;
     }
 
     .latest-news h2, .latest-news h3 {
@@ -1947,7 +1948,7 @@ h2.typoh2 {
 @media (max-width: 600px) {
     .logo {
         width: 130px;
-        height: 130px;
+        height: 85px;
     }
 
         .logo h1 a {
@@ -1964,7 +1965,7 @@ h2.typoh2 {
 
     .logo {
         width: 150px;
-        height: 150px;
+        height: 95px;
         margin: 0 auto;
     }
 
@@ -2233,7 +2234,7 @@ h2.typoh2 {
 
     .logo {
         width: 125px;
-        height: 125px;
+        height: 100px;
     }
 
         .logo h1 a {

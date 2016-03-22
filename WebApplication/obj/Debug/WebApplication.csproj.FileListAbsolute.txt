@@ -90,5 +90,6 @@ C:\Projetos\Sognare\WebApplication\WebApplication\bin\System.Web.WebPages.xml
 C:\Projetos\Sognare\WebApplication\WebApplication\bin\System.Web.WebPages.Deployment.xml
 C:\Projetos\Sognare\WebApplication\WebApplication\bin\System.Web.WebPages.Razor.xml
 C:\Projetos\Sognare\WebApplication\WebApplication\bin\Antlr3.Runtime.pdb
+C:\Projetos\Sognare\WebApplication\WebApplication\obj\Debug\WebApplication.csprojResolveAssemblyReference.cache
 C:\Projetos\Sognare\WebApplication\WebApplication\obj\Debug\WebApplication.dll
 C:\Projetos\Sognare\WebApplication\WebApplication\obj\Debug\WebApplication.pdb

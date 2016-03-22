@@ -17,9 +17,12 @@ namespace WebApplication.Models
        
         public int? user_id { get; set; }
 
+        [MaxLength(100)]
         [Required(ErrorMessage = "O nome é obrigatório.")]
         public string name { get; set; }
 
+        [MaxLength(15)]
+        [DataType(DataType.PhoneNumber)]        
         [RegularExpression(@"[0-9]*\.?[0-9]+", ErrorMessage = "O telefone deve ter só números.")]
         public string phone { get; set; }        
 

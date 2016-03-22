@@ -25,7 +25,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.zip_code, "CEP", htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-3">
-                            @Html.EditorFor(model => model.zip_code, new { htmlAttributes = new { @class = "form-control", @maxlength = "8", @type = "number" } })
+                            @Html.EditorFor(model => model.zip_code, new { htmlAttributes = new { @class = "form-control", @max = "99999999", @type = "number" } })
                             @Html.ValidationMessageFor(model => model.zip_code, "", new { @class = "text-danger" })
                         </div>
                     </div>

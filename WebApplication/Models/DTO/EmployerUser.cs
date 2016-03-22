@@ -7,7 +7,6 @@ namespace WebApplication.Models
 {
     public class EmployerUser
     {
-
         public Employer Employer { get; set; }
         public User User { get; set; }
     }

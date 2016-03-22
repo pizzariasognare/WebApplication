@@ -41,6 +41,8 @@ namespace WebApplication.Repositories
 
     public class CustomerAddressRepository : ICustomerAddressRepository
     {
+        private ZipCodeRepository zip_code_repository = new ZipCodeRepository();
+
         /// <summary>
         /// Método insere um endereço de um cliente.
         /// </summary>
@@ -118,6 +120,11 @@ namespace WebApplication.Repositories
             using (Entities entities = new Entities())
             {
                 customer_address = entities.CustomerAddress.Where(c => c.id == id).FirstOrDefault();
+
+                if (customer_address != null)
+                {
+                    customer_address.ZipCode = this.zip_code_repository.GetZipCode(customer_address.zip_code);
+                }
             }
 
             return customer_address;

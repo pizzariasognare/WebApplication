@@ -34,10 +34,12 @@ namespace WebApplication.Services
     public class CustomerAddressService : ICustomerAddressService
     {
         private ICustomerAddressRepository customer_address_repository;
+        private IZipCodeService zip_code_service;
 
         public CustomerAddressService(ICustomerAddressRepository customer_address_repository)
         {
             this.customer_address_repository = customer_address_repository;
+            this.zip_code_service = new ZipCodeService(new ZipCodeRepository());
         }
 
         /// <summary>
@@ -45,15 +47,17 @@ namespace WebApplication.Services
         /// </summary>
         /// <param name="CustomerAddress">Objeto</param>
         /// <returns>Status da inserção (Verdade ou falso)</returns>
-        public ReturnStatus Insert(CustomerAddress CustomerAddress)
+        public ReturnStatus Insert(CustomerAddress customer_address)
         {
             ReturnStatus return_status = new ReturnStatus();
 
             // Verifica se aconteceu alguma erro no cadastro do endereço do cliente.
-            if (!this.customer_address_repository.Insert(CustomerAddress))
+            if (!this.customer_address_repository.Insert(customer_address))
             {
                 return_status.message = "Erro ao adicionar endereço do cliente.";
             }
+
+            this.zip_code_service.Insert(new ZipCode(customer_address.zip_code));
 
             return_status.success = true;
             return_status.message = "Endereço do cliente adicionado com sucesso.";
@@ -65,16 +69,18 @@ namespace WebApplication.Services
         /// </summary>
         /// <param name="CustomerAddress">Objeto</param>
         /// <returns>Status da atualização (Verdade ou falso)</returns>
-        public ReturnStatus Update(CustomerAddress CustomerAddress)
+        public ReturnStatus Update(CustomerAddress customer_address)
         {
             ReturnStatus return_status = new ReturnStatus();
 
             // Verifica se aconteceu alguma erro no cadastro do cliente.
-            if (!this.customer_address_repository.Update(CustomerAddress))
+            if (!this.customer_address_repository.Update(customer_address))
             {
                 return_status.message = "Erro ao editar endereço de um cliente.";
                 return return_status;
             }
+
+            this.zip_code_service.Insert(new ZipCode(customer_address.zip_code));
 
             return_status.success = true;
             return_status.message = "Endereço do cliente editado com sucesso.";

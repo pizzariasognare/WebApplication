@@ -12,6 +12,7 @@ using WebApplication.Services;
 
 namespace WebApplication.Controllers
 {
+    [AllowAnonymous]
     public class CustomerController : AppController
     {
         private ICustomerService customer_service;

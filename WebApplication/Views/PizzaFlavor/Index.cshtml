@@ -1,0 +1,62 @@
+﻿@model IList<WebApplication.Models.PizzaFlavor>
+
+@{
+    ViewBag.Title = "Pizzas";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div>
+            <div class="pull-right">
+            </div>
+            <h3 class="bars">Pizzas</h3>
+            <hr />
+        </div>
+        <div>
+            <table class="table table-striped table-bordered datatable" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Sabor</th>
+                        <th>Pequena (25 cm)</th>
+                        <th>Grande (35 cm)</th>
+                        <th>Gigante (45 cm)</th>
+                        <th>Ingredientes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="@(item.enabled == 0 ? "danger" : "")">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.name)
+                            </td>
+
+                            @foreach (var pizza in item.Pizza)
+                            {
+                                <td>
+                                    R$ @Html.DisplayFor(modelItem => pizza.price)
+                                </td>
+                            }
+
+                            <td>
+                                @foreach (var ingredient in item.Ingredient)
+                                {
+                                    @Html.DisplayFor(modelItem => ingredient.name) @(", ")
+
+                                }
+                            </td>
+                        </tr>
+                    }
+
+                    @if (Model.Count() == 0)
+                    {
+                        <tr>
+                            <td colspan="5">Nenhuma pizza encontrado.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <p class="text-danger">* Todas as pizzas salgadas vêem com molho de tomate, orégano e azeitona.</p>
+        </div>
+    </div>
+</div>

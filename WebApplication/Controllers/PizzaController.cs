@@ -26,6 +26,7 @@ namespace WebApplication.Controllers
             this.pizza_flavor_service = pizza_flavor_service;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult Index()
         {

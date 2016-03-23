@@ -312,7 +312,7 @@
     <Content Include="Views\Customer\Create.cshtml" />
     <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
-    <Content Include="Views\Shared\_LoginLayout.cshtml" />
+    <Content Include="Views\Shared\_OpenLayout.cshtml" />
     <Content Include="Views\CustomerAddress\Create.cshtml" />
     <Content Include="Views\CustomerAddress\Edit.cshtml" />
     <Content Include="Views\Customer\CreateUser.cshtml" />

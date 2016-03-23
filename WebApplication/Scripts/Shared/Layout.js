@@ -24,5 +24,5 @@
                 "sSortDescending": ": Ordenar colunas de forma descendente"
             }
         }
-    });
+    });    
 });

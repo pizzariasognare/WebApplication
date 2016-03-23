@@ -1,11 +1,12 @@
 ﻿@model IList<WebApplication.Models.PizzaFlavor>
 
 @{
+    Layout = "~/Views/Shared/_OpenLayout.cshtml";
     ViewBag.Title = "Pizzas";
 }
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-11">
         <div>
             <div class="pull-right">
             </div>
@@ -17,34 +18,30 @@
                 <thead>
                     <tr>
                         <th>Sabor</th>
-                        <th>Pequena (25 cm)</th>
-                        <th>Grande (35 cm)</th>
-                        <th>Gigante (45 cm)</th>
-                        <th>Ingredientes</th>
+                        <th>Pequena <p><small>(25 cm)</small></p></th>
+                        <th>Grande <p><small>(35 cm)</small></p></th>
+                        <th>Gigante <p><small>(45 cm)</small></p></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr class="@(item.enabled == 0 ? "danger" : "")">
+                        <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.name)
+                                <b>@Html.DisplayFor(modelItem => item.name)</b>
+
+                                @foreach (var ingredit in item.Ingredient)
+                                {
+                                    <p><small>@(ingredit.name)</small></p>
+                                }
                             </td>
 
                             @foreach (var pizza in item.Pizza)
                             {
                                 <td>
-                                    R$ @Html.DisplayFor(modelItem => pizza.price)
+                                    R$@Html.DisplayFor(modelItem => pizza.price)
                                 </td>
                             }
-
-                            <td>
-                                @foreach (var ingredient in item.Ingredient)
-                                {
-                                    @Html.DisplayFor(modelItem => ingredient.name) @(", ")
-
-                                }
-                            </td>
                         </tr>
                     }
 
@@ -57,6 +54,8 @@
                 </tbody>
             </table>
             <p class="text-danger">* Todas as pizzas salgadas vêem com molho de tomate, orégano e azeitona.</p>
+            <p class="text-danger">* Todas as pizzas salgadas vêem com borda de catupiry <b>grátis</b>.</p>
+            <p class="text-danger">* Todas as pizzas doces vêem com borda de doce de leite <b>grátis</b>.</p>
         </div>
     </div>
 </div>

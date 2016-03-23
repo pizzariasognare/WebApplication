@@ -8,18 +8,18 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema pizzariasognare_com_br
+-- Schema pizzariasognare.com.br
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema pizzariasognare_com_br
+-- Schema pizzariasognare.com.br
 -- -----------------------------------------------------
-USE `pizzariasognare_com_br` ;
+USE `pizzariasognare.com.br` ;
 
 -- -----------------------------------------------------
--- Table `pizzariasognare_com_br`.`Profile`
+-- Table `pizzariasognare.com.br`.`Profile`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`Profile` (
+CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`Profile` (
   `id` INT UNSIGNED NOT NULL COMMENT '',
   `name` VARCHAR(20) NOT NULL COMMENT '',
   `level` INT UNSIGNED NOT NULL COMMENT '',
@@ -29,9 +29,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pizzariasognare_com_br`.`User`
+-- Table `pizzariasognare.com.br`.`User`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`User` (
+CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`User` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '',
   `profile_id` INT UNSIGNED NOT NULL COMMENT '',
   `email` VARCHAR(100) NOT NULL COMMENT '',
@@ -42,16 +42,16 @@ CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`User` (
   INDEX `profile_id_FK` (`profile_id` ASC)  COMMENT '',
   CONSTRAINT `User_Profile_FK`
     FOREIGN KEY (`profile_id`)
-    REFERENCES `pizzariasognare_com_br`.`Profile` (`id`)
+    REFERENCES `pizzariasognare.com.br`.`Profile` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pizzariasognare_com_br`.`Customer`
+-- Table `pizzariasognare.com.br`.`Customer`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`Customer` (
+CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`Customer` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '',
   `user_id` INT UNSIGNED NULL COMMENT '',
   `name` VARCHAR(100) NOT NULL COMMENT '',
@@ -63,16 +63,16 @@ CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`Customer` (
   UNIQUE INDEX `phone_UNIQUE` (`phone` ASC)  COMMENT '',
   CONSTRAINT `Customer_User_FK`
     FOREIGN KEY (`user_id`)
-    REFERENCES `pizzariasognare_com_br`.`User` (`id`)
+    REFERENCES `pizzariasognare.com.br`.`User` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pizzariasognare_com_br`.`CustomerAddress`
+-- Table `pizzariasognare.com.br`.`CustomerAddress`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`CustomerAddress` (
+CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`CustomerAddress` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '',
   `customer_id` INT UNSIGNED NOT NULL COMMENT '',
   `zip_code` VARCHAR(8) NOT NULL COMMENT '',
@@ -90,16 +90,16 @@ CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`CustomerAddress` (
   INDEX `customer_id_FK` (`customer_id` ASC)  COMMENT '',
   CONSTRAINT `CustomerAddress_Customer_FK`
     FOREIGN KEY (`customer_id`)
-    REFERENCES `pizzariasognare_com_br`.`Customer` (`id`)
+    REFERENCES `pizzariasognare.com.br`.`Customer` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pizzariasognare_com_br`.`Ingredient`
+-- Table `pizzariasognare.com.br`.`Ingredient`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`Ingredient` (
+CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`Ingredient` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '',
   `name` VARCHAR(50) NOT NULL COMMENT '',
   PRIMARY KEY (`id`)  COMMENT '',
@@ -108,9 +108,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pizzariasognare_com_br`.`DrinkType`
+-- Table `pizzariasognare.com.br`.`DrinkType`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`DrinkType` (
+CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`DrinkType` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '',
   `name` VARCHAR(50) NOT NULL COMMENT '',
   PRIMARY KEY (`id`)  COMMENT '',
@@ -119,9 +119,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pizzariasognare_com_br`.`Drink`
+-- Table `pizzariasognare.com.br`.`Drink`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`Drink` (
+CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`Drink` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '',
   `drink_type_id` INT UNSIGNED NOT NULL COMMENT '',
   `name` VARCHAR(50) NOT NULL COMMENT '',
@@ -133,16 +133,16 @@ CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`Drink` (
   UNIQUE INDEX `name_UNIQUE` (`name` ASC)  COMMENT '',
   CONSTRAINT `Drink_DrinkType_FK`
     FOREIGN KEY (`drink_type_id`)
-    REFERENCES `pizzariasognare_com_br`.`DrinkType` (`id`)
+    REFERENCES `pizzariasognare.com.br`.`DrinkType` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pizzariasognare_com_br`.`PizzaFlavor`
+-- Table `pizzariasognare.com.br`.`PizzaFlavor`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`PizzaFlavor` (
+CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`PizzaFlavor` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '',
   `name` VARCHAR(50) NOT NULL COMMENT '',
   `image` VARCHAR(255) NULL COMMENT '',
@@ -153,9 +153,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pizzariasognare_com_br`.`PizzaSize`
+-- Table `pizzariasognare.com.br`.`PizzaSize`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`PizzaSize` (
+CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`PizzaSize` (
   `id` INT UNSIGNED NOT NULL COMMENT '',
   `name` VARCHAR(50) NOT NULL COMMENT '',
   `size` INT NOT NULL COMMENT '',
@@ -167,9 +167,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pizzariasognare_com_br`.`PizzaFlavorIngredient`
+-- Table `pizzariasognare.com.br`.`PizzaFlavorIngredient`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`PizzaFlavorIngredient` (
+CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`PizzaFlavorIngredient` (
   `pizza_flavor_id` INT UNSIGNED NOT NULL COMMENT '',
   `ingredient_id` INT UNSIGNED NOT NULL COMMENT '',
   PRIMARY KEY (`pizza_flavor_id`, `ingredient_id`)  COMMENT '',
@@ -177,20 +177,20 @@ CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`PizzaFlavorIngredient` (
   INDEX `pizza_flavor_id_FK` (`pizza_flavor_id` ASC)  COMMENT '',
   CONSTRAINT `PizzaFlavorIngredient_PizzaFlavor_FK`
     FOREIGN KEY (`pizza_flavor_id`)
-    REFERENCES `pizzariasognare_com_br`.`PizzaFlavor` (`id`)
+    REFERENCES `pizzariasognare.com.br`.`PizzaFlavor` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `PizzaFlavorIngredient_Ingredient_FK`
     FOREIGN KEY (`ingredient_id`)
-    REFERENCES `pizzariasognare_com_br`.`Ingredient` (`id`)
+    REFERENCES `pizzariasognare.com.br`.`Ingredient` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `pizzariasognare_com_br`.`Pizza`
+-- Table `pizzariasognare.com.br`.`Pizza`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`Pizza` (
+CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`Pizza` (
   `id` INT UNSIGNED NOT NULL COMMENT '',
   `pizza_flavor_id` INT UNSIGNED NOT NULL COMMENT '',
   `pizza_size_id` INT UNSIGNED NOT NULL COMMENT '',
@@ -201,21 +201,21 @@ CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`Pizza` (
   PRIMARY KEY (`id`)  COMMENT '',
   CONSTRAINT `Pizza_PizzaFlavor_FK`
     FOREIGN KEY (`pizza_flavor_id`)
-    REFERENCES `pizzariasognare_com_br`.`PizzaFlavor` (`id`)
+    REFERENCES `pizzariasognare.com.br`.`PizzaFlavor` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `Pizza_PizzaSize_FK`
     FOREIGN KEY (`pizza_size_id`)
-    REFERENCES `pizzariasognare_com_br`.`PizzaSize` (`id`)
+    REFERENCES `pizzariasognare.com.br`.`PizzaSize` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pizzariasognare_com_br`.`PaymentType`
+-- Table `pizzariasognare.com.br`.`PaymentType`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`PaymentType` (
+CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`PaymentType` (
   `id` INT NOT NULL COMMENT '',
   `name` VARCHAR(50) NOT NULL COMMENT '',
   `enabled` TINYINT(1) NOT NULL DEFAULT 1 COMMENT '',
@@ -225,9 +225,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pizzariasognare_com_br`.`Order`
+-- Table `pizzariasognare.com.br`.`Order`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`Order` (
+CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`Order` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '',
   `balcony` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '',
   `payment_type_id` INT NOT NULL COMMENT '',
@@ -242,21 +242,21 @@ CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`Order` (
   INDEX `orders_customer_address_id_FK` (`customer_address_id` ASC)  COMMENT '',
   CONSTRAINT `Order_PaymentType_FK`
     FOREIGN KEY (`payment_type_id`)
-    REFERENCES `pizzariasognare_com_br`.`PaymentType` (`id`)
+    REFERENCES `pizzariasognare.com.br`.`PaymentType` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `Order_CustomerAddress_FK`
     FOREIGN KEY (`customer_address_id`)
-    REFERENCES `pizzariasognare_com_br`.`CustomerAddress` (`id`)
+    REFERENCES `pizzariasognare.com.br`.`CustomerAddress` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pizzariasognare_com_br`.`OrderPizza`
+-- Table `pizzariasognare.com.br`.`OrderPizza`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`OrderPizza` (
+CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`OrderPizza` (
   `order_id` INT UNSIGNED NOT NULL COMMENT '',
   `pizza_id` INT UNSIGNED ZEROFILL NOT NULL COMMENT '',
   PRIMARY KEY (`order_id`, `pizza_id`)  COMMENT '',
@@ -264,21 +264,21 @@ CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`OrderPizza` (
   INDEX `order_id_FK` (`order_id` ASC)  COMMENT '',
   CONSTRAINT `OrderPizza_Order_FK`
     FOREIGN KEY (`order_id`)
-    REFERENCES `pizzariasognare_com_br`.`Order` (`id`)
+    REFERENCES `pizzariasognare.com.br`.`Order` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `OrderPizza_Pizza_FK`
     FOREIGN KEY (`pizza_id`)
-    REFERENCES `pizzariasognare_com_br`.`Pizza` (`id`)
+    REFERENCES `pizzariasognare.com.br`.`Pizza` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pizzariasognare_com_br`.`OrderDrink`
+-- Table `pizzariasognare.com.br`.`OrderDrink`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`OrderDrink` (
+CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`OrderDrink` (
   `order_id` INT UNSIGNED NOT NULL COMMENT '',
   `drink_id` INT UNSIGNED NOT NULL COMMENT '',
   PRIMARY KEY (`order_id`, `drink_id`)  COMMENT '',
@@ -286,21 +286,21 @@ CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`OrderDrink` (
   INDEX `order_id_FK` (`order_id` ASC)  COMMENT '',
   CONSTRAINT `OrdersDrink_Order_FK`
     FOREIGN KEY (`order_id`)
-    REFERENCES `pizzariasognare_com_br`.`Order` (`id`)
+    REFERENCES `pizzariasognare.com.br`.`Order` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `OrdersDrink_Drink_FK`
     FOREIGN KEY (`drink_id`)
-    REFERENCES `pizzariasognare_com_br`.`Drink` (`id`)
+    REFERENCES `pizzariasognare.com.br`.`Drink` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pizzariasognare_com_br`.`OrderStatus`
+-- Table `pizzariasognare.com.br`.`OrderStatus`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`OrderStatus` (
+CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`OrderStatus` (
   `id` INT UNSIGNED NOT NULL COMMENT '',
   `description` VARCHAR(50) NOT NULL COMMENT '',
   PRIMARY KEY (`id`)  COMMENT '',
@@ -309,9 +309,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pizzariasognare_com_br`.`OrderLog`
+-- Table `pizzariasognare.com.br`.`OrderLog`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`OrderLog` (
+CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`OrderLog` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '',
   `order_id` INT UNSIGNED NOT NULL COMMENT '',
   `order_status_id` INT UNSIGNED NOT NULL COMMENT '',
@@ -325,26 +325,26 @@ CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`OrderLog` (
   INDEX `user_id_FK` (`user_id` ASC)  COMMENT '',
   CONSTRAINT `OrderLog_Order_FK`
     FOREIGN KEY (`order_id`)
-    REFERENCES `pizzariasognare_com_br`.`Order` (`id`)
+    REFERENCES `pizzariasognare.com.br`.`Order` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `OrderLog_OrderStatus_FK`
     FOREIGN KEY (`order_status_id`)
-    REFERENCES `pizzariasognare_com_br`.`OrderStatus` (`id`)
+    REFERENCES `pizzariasognare.com.br`.`OrderStatus` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `OrderLog_User_FK`
     FOREIGN KEY (`user_id`)
-    REFERENCES `pizzariasognare_com_br`.`User` (`id`)
+    REFERENCES `pizzariasognare.com.br`.`User` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pizzariasognare_com_br`.`Employer`
+-- Table `pizzariasognare.com.br`.`Employer`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`Employer` (
+CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`Employer` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '',
   `user_id` INT UNSIGNED NULL COMMENT '',
   `name` VARCHAR(255) NOT NULL COMMENT '',
@@ -354,16 +354,16 @@ CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`Employer` (
   INDEX `user_id_FK` (`user_id` ASC)  COMMENT '',
   CONSTRAINT `Employer_User_FK`
     FOREIGN KEY (`user_id`)
-    REFERENCES `pizzariasognare_com_br`.`User` (`id`)
+    REFERENCES `pizzariasognare.com.br`.`User` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pizzariasognare_com_br`.`ZipCode`
+-- Table `pizzariasognare.com.br`.`ZipCode`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`ZipCode` (
+CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`ZipCode` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '',
   `zip_code` VARCHAR(8) NOT NULL COMMENT '',
   `delivery_price` DECIMAL(15,2) NOT NULL DEFAULT '2.00' COMMENT '',
@@ -373,9 +373,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pizzariasognare_com_br`.`CakeType`
+-- Table `pizzariasognare.com.br`.`CakeType`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`CakeType` (
+CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`CakeType` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '',
   `name` VARCHAR(50) NOT NULL COMMENT '',
   PRIMARY KEY (`id`)  COMMENT '',
@@ -384,9 +384,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pizzariasognare_com_br`.`Cake`
+-- Table `pizzariasognare.com.br`.`Cake`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`Cake` (
+CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`Cake` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '',
   `cake_type_id` INT UNSIGNED NOT NULL COMMENT '',
   `name` VARCHAR(50) NOT NULL COMMENT '',
@@ -398,16 +398,16 @@ CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`Cake` (
   INDEX `cake_type_id_FK` (`cake_type_id` ASC)  COMMENT '',
   CONSTRAINT `Cake_CakeType_FK`
     FOREIGN KEY (`cake_type_id`)
-    REFERENCES `pizzariasognare_com_br`.`CakeType` (`id`)
+    REFERENCES `pizzariasognare.com.br`.`CakeType` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `pizzariasognare_com_br`.`OrderCake`
+-- Table `pizzariasognare.com.br`.`OrderCake`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`OrderCake` (
+CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`OrderCake` (
   `order_id` INT UNSIGNED NOT NULL COMMENT '',
   `cake_id` INT UNSIGNED NOT NULL COMMENT '',
   PRIMARY KEY (`order_id`, `cake_id`)  COMMENT '',
@@ -415,12 +415,12 @@ CREATE TABLE IF NOT EXISTS `pizzariasognare_com_br`.`OrderCake` (
   INDEX `order_id_FK` (`order_id` ASC)  COMMENT '',
   CONSTRAINT `OrderCake_Order_FK`
     FOREIGN KEY (`order_id`)
-    REFERENCES `pizzariasognare_com_br`.`Order` (`id`)
+    REFERENCES `pizzariasognare.com.br`.`Order` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `OrderCake_Cake_FK`
     FOREIGN KEY (`cake_id`)
-    REFERENCES `pizzariasognare_com_br`.`Cake` (`id`)
+    REFERENCES `pizzariasognare.com.br`.`Cake` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -431,453 +431,453 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
--- Data for table `pizzariasognare_com_br`.`Profile`
+-- Data for table `pizzariasognare.com.br`.`Profile`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `pizzariasognare_com_br`;
-INSERT INTO `pizzariasognare_com_br`.`Profile` (`id`, `name`, `level`) VALUES (1, 'Cliente', 10);
-INSERT INTO `pizzariasognare_com_br`.`Profile` (`id`, `name`, `level`) VALUES (2, 'Entregador', 20);
-INSERT INTO `pizzariasognare_com_br`.`Profile` (`id`, `name`, `level`) VALUES (3, 'Atendente', 30);
-INSERT INTO `pizzariasognare_com_br`.`Profile` (`id`, `name`, `level`) VALUES (4, 'Gerente', 40);
-INSERT INTO `pizzariasognare_com_br`.`Profile` (`id`, `name`, `level`) VALUES (5, 'Administrador', 50);
+USE `pizzariasognare.com.br`;
+INSERT INTO `pizzariasognare.com.br`.`Profile` (`id`, `name`, `level`) VALUES (1, 'Cliente', 10);
+INSERT INTO `pizzariasognare.com.br`.`Profile` (`id`, `name`, `level`) VALUES (2, 'Entregador', 20);
+INSERT INTO `pizzariasognare.com.br`.`Profile` (`id`, `name`, `level`) VALUES (3, 'Atendente', 30);
+INSERT INTO `pizzariasognare.com.br`.`Profile` (`id`, `name`, `level`) VALUES (4, 'Gerente', 40);
+INSERT INTO `pizzariasognare.com.br`.`Profile` (`id`, `name`, `level`) VALUES (5, 'Administrador', 50);
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `pizzariasognare_com_br`.`User`
+-- Data for table `pizzariasognare.com.br`.`User`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `pizzariasognare_com_br`;
-INSERT INTO `pizzariasognare_com_br`.`User` (`id`, `profile_id`, `email`, `password`, `enabled`) VALUES (1, 5, 'alexsilvamartinsasm@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1);
+USE `pizzariasognare.com.br`;
+INSERT INTO `pizzariasognare.com.br`.`User` (`id`, `profile_id`, `email`, `password`, `enabled`) VALUES (1, 5, 'alexsilvamartinsasm@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1);
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `pizzariasognare_com_br`.`PizzaSize`
+-- Data for table `pizzariasognare.com.br`.`PizzaSize`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `pizzariasognare_com_br`;
-INSERT INTO `pizzariasognare_com_br`.`PizzaSize` (`id`, `name`, `size`, `slices`, `price`) VALUES (1, 'Pequena', 25, 6, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaSize` (`id`, `name`, `size`, `slices`, `price`) VALUES (2, 'Grande', 35, 8, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaSize` (`id`, `name`, `size`, `slices`, `price`) VALUES (3, 'Gigante', 45, 10, DEFAULT);
+USE `pizzariasognare.com.br`;
+INSERT INTO `pizzariasognare.com.br`.`PizzaSize` (`id`, `name`, `size`, `slices`, `price`) VALUES (1, 'Pequena', 25, 6, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaSize` (`id`, `name`, `size`, `slices`, `price`) VALUES (2, 'Grande', 35, 8, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaSize` (`id`, `name`, `size`, `slices`, `price`) VALUES (3, 'Gigante', 45, 10, DEFAULT);
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `pizzariasognare_com_br`.`PaymentType`
+-- Data for table `pizzariasognare.com.br`.`PaymentType`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `pizzariasognare_com_br`;
-INSERT INTO `pizzariasognare_com_br`.`PaymentType` (`id`, `name`, `enabled`) VALUES (1, 'Dinheiro', DEFAULT);
+USE `pizzariasognare.com.br`;
+INSERT INTO `pizzariasognare.com.br`.`PaymentType` (`id`, `name`, `enabled`) VALUES (1, 'Dinheiro', DEFAULT);
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `pizzariasognare_com_br`.`OrderStatus`
+-- Data for table `pizzariasognare.com.br`.`OrderStatus`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `pizzariasognare_com_br`;
-INSERT INTO `pizzariasognare_com_br`.`OrderStatus` (`id`, `description`) VALUES (1, 'Abrindo');
-INSERT INTO `pizzariasognare_com_br`.`OrderStatus` (`id`, `description`) VALUES (2, 'Aberto');
-INSERT INTO `pizzariasognare_com_br`.`OrderStatus` (`id`, `description`) VALUES (3, 'Em produção');
-INSERT INTO `pizzariasognare_com_br`.`OrderStatus` (`id`, `description`) VALUES (4, 'Pronto');
-INSERT INTO `pizzariasognare_com_br`.`OrderStatus` (`id`, `description`) VALUES (5, 'Em entrega');
-INSERT INTO `pizzariasognare_com_br`.`OrderStatus` (`id`, `description`) VALUES (6, 'Entregue');
-INSERT INTO `pizzariasognare_com_br`.`OrderStatus` (`id`, `description`) VALUES (7, 'Cancelado');
-INSERT INTO `pizzariasognare_com_br`.`OrderStatus` (`id`, `description`) VALUES (8, 'Fechado');
+USE `pizzariasognare.com.br`;
+INSERT INTO `pizzariasognare.com.br`.`OrderStatus` (`id`, `description`) VALUES (1, 'Abrindo');
+INSERT INTO `pizzariasognare.com.br`.`OrderStatus` (`id`, `description`) VALUES (2, 'Aberto');
+INSERT INTO `pizzariasognare.com.br`.`OrderStatus` (`id`, `description`) VALUES (3, 'Em produção');
+INSERT INTO `pizzariasognare.com.br`.`OrderStatus` (`id`, `description`) VALUES (4, 'Pronto');
+INSERT INTO `pizzariasognare.com.br`.`OrderStatus` (`id`, `description`) VALUES (5, 'Em entrega');
+INSERT INTO `pizzariasognare.com.br`.`OrderStatus` (`id`, `description`) VALUES (6, 'Entregue');
+INSERT INTO `pizzariasognare.com.br`.`OrderStatus` (`id`, `description`) VALUES (7, 'Cancelado');
+INSERT INTO `pizzariasognare.com.br`.`OrderStatus` (`id`, `description`) VALUES (8, 'Fechado');
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `pizzariasognare_com_br`.`Ingredient`
+-- Data for table `pizzariasognare.com.br`.`Ingredient`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `pizzariasognare_com_br`;
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (1, 'mussarela');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (2, 'alho frito');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (3, 'cebola');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (4, 'ovos');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (5, 'bacon');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (6, 'calabresa moída');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (7, 'pimenta');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (8, 'tomate');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (9, 'calabresa');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (10, 'lombo canadense');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (11, 'champignon');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (12, 'frango');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (13, 'palmito');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (14, 'manjericão');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (15, 'parmesão');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (16, 'presunto');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (17, 'pimentão');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (18, 'provolone');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (19, 'tomate seco');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (20, 'rúcula');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (21, 'catupiry');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (23, 'leite condesado');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (24, 'banana');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (25, 'açúcar');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (26, 'canela');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (27, 'chocolate');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (28, 'morango');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (29, 'doce de leite');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (30, 'flocos de arroz');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (31, 'coco ralado');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (32, 'goiabada ');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (33, 'atum ');
-INSERT INTO `pizzariasognare_com_br`.`Ingredient` (`id`, `name`) VALUES (34, 'peito de peru');
+USE `pizzariasognare.com.br`;
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (1, 'mussarela');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (2, 'alho frito');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (3, 'cebola');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (4, 'ovos');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (5, 'bacon');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (6, 'calabresa moída');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (7, 'pimenta');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (8, 'tomate');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (9, 'calabresa');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (10, 'lombo canadense');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (11, 'champignon');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (12, 'frango');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (13, 'palmito');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (14, 'manjericão');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (15, 'parmesão');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (16, 'presunto');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (17, 'pimentão');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (18, 'provolone');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (19, 'tomate seco');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (20, 'rúcula');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (21, 'catupiry');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (23, 'leite condesado');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (24, 'banana');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (25, 'açúcar');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (26, 'canela');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (27, 'chocolate');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (28, 'morango');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (29, 'doce de leite');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (30, 'flocos de arroz');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (31, 'coco ralado');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (32, 'goiabada ');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (33, 'atum ');
+INSERT INTO `pizzariasognare.com.br`.`Ingredient` (`id`, `name`) VALUES (34, 'peito de peru');
 
 COMMIT;
 
 -- -----------------------------------------------------
--- Data for table `pizzariasognare_com_br`.`PizzaFlavor`
+-- Data for table `pizzariasognare.com.br`.`PizzaFlavor`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `pizzariasognare_com_br`;
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (1, 'Alho', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (2, 'Atum I', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (3, 'Atum II', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (4, 'Bacon', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (5, 'Baiana', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (6, 'Bauru', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (7, 'Calabresa I', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (8, 'Calabresa II', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (9, 'Canadense', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (10, 'Champignon', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (11, 'Frango c/ Catupiry', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (12, 'Grega', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (13, 'Light', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (14, 'Marguerita', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (15, 'Maromba', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (16, 'Moda Cliente', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (17, 'Mussarela', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (18, 'Napolitana', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (19, 'Palmito', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (20, 'Peito de Peru', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (21, 'Portuguesa I', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (22, 'Portuguesa II', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (23, 'Presunto', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (24, 'Provolone', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (25, 'Siciliana', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (26, 'Sognare', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (27, 'Tomate Seco', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (28, '2 Queijos', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (29, '3 Queijos', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (30, '4 Queijos', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (31, 'Banana', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (32, 'Banana c/ Chocolate', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (33, 'Chocolate', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (34, 'Chocolate c/ Morango', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (35, 'Chokito', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (36, 'Prestígio', NULL, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (37, 'Romeu e Julieta', NULL, DEFAULT);
+USE `pizzariasognare.com.br`;
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (1, 'Alho', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (2, 'Atum I', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (3, 'Atum II', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (4, 'Bacon', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (5, 'Baiana', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (6, 'Bauru', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (7, 'Calabresa I', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (8, 'Calabresa II', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (9, 'Canadense', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (10, 'Champignon', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (11, 'Frango c/ Catupiry', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (12, 'Grega', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (13, 'Light', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (14, 'Marguerita', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (15, 'Maromba', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (16, 'Moda Cliente', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (17, 'Mussarela', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (18, 'Napolitana', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (19, 'Palmito', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (20, 'Peito de Peru', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (21, 'Portuguesa I', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (22, 'Portuguesa II', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (23, 'Presunto', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (24, 'Provolone', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (25, 'Siciliana', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (26, 'Sognare', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (27, 'Tomate Seco', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (28, '2 Queijos', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (29, '3 Queijos', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (30, '4 Queijos', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (31, 'Banana', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (32, 'Banana c/ Chocolate', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (33, 'Chocolate', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (34, 'Chocolate c/ Morango', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (35, 'Chokito', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (36, 'Prestígio', NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavor` (`id`, `name`, `image`, `enabled`) VALUES (37, 'Romeu e Julieta', NULL, DEFAULT);
 
 
 COMMIT;
 
 -- -----------------------------------------------------
--- Data for table `pizzariasognare_com_br`.`PizzaFlavor`
+-- Data for table `pizzariasognare.com.br`.`PizzaFlavor`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `pizzariasognare_com_br`;
+USE `pizzariasognare.com.br`;
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (1, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (1, 2);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (1, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (1, 2);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (2, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (2, 33);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (2, 3);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (2, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (2, 33);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (2, 3);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (3, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (3, 33);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (3, 3);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (3, 4);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (3, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (3, 33);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (3, 3);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (3, 4);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (4, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (4, 5);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (4, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (4, 5);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (5, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (5, 6);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (5, 3);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (5, 7);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (5, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (5, 6);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (5, 3);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (5, 7);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (6, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (6, 16);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (6, 8);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (6, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (6, 16);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (6, 8);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (7, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (7, 9);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (7, 3);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (7, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (7, 9);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (7, 3);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (8, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (8, 9);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (8, 3);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (8, 2);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (8, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (8, 9);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (8, 3);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (8, 2);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (9, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (9, 10);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (9, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (9, 10);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (10, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (10, 11);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (10, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (10, 11);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (11, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (11, 12);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (11, 21);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (11, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (11, 12);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (11, 21);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (12, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (12, 10);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (12, 13);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (12, 3);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (12, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (12, 10);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (12, 13);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (12, 3);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (13, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (13, 34);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (13, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (13, 34);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (14, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (14, 8);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (14, 14);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (14, 15);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (14, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (14, 8);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (14, 14);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (14, 15);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (15, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (15, 12);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (15, 4);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (15, 2);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (15, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (15, 12);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (15, 4);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (15, 2);
 
 
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (17, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (17, 1);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (18, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (18, 8);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (18, 15);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (18, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (18, 8);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (18, 15);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (19, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (19, 13);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (19, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (19, 13);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (20, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (20, 34);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (20, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (20, 34);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (21, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (21, 16);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (21, 3);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (21, 4);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (21, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (21, 16);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (21, 3);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (21, 4);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (22, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (22, 16);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (22, 3);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (22, 4);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (22, 17);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (22, 9);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (22, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (22, 16);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (22, 3);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (22, 4);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (22, 17);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (22, 9);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (23, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (23, 16);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (23, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (23, 16);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (24, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (24, 18);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (24, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (24, 18);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (25, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (25, 11);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (25, 5);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (25, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (25, 11);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (25, 5);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (26, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (26, 11);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (26, 12);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (26, 3);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (26, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (26, 11);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (26, 12);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (26, 3);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (27, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (27, 19);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (27, 20);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (27, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (27, 19);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (27, 20);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (28, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (28, 21);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (28, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (28, 21);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (29, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (29, 21);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (29, 15);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (29, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (29, 21);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (29, 15);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (30, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (30, 21);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (30, 15);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (30, 18);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (30, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (30, 21);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (30, 15);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (30, 18);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (31, 23);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (31, 24);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (31, 25);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (31, 26);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (31, 23);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (31, 24);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (31, 25);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (31, 26);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (32, 24);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (32, 27);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (32, 24);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (32, 27);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (33, 27);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (33, 27);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (34, 27);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (34, 28);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (34, 27);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (34, 28);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (35, 27);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (35, 29);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (35, 30);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (35, 27);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (35, 29);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (35, 30);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (36, 27);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (36, 31);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (36, 27);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (36, 31);
 
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (37, 1);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (37, 32);
-INSERT INTO `pizzariasognare_com_br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (37, 26);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (37, 1);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (37, 32);
+INSERT INTO `pizzariasognare.com.br`.`PizzaFlavorIngredient` (`pizza_flavor_id`, `ingredient_id`) VALUES (37, 26);
 
 COMMIT;
 
 -- -----------------------------------------------------
--- Data for table `pizzariasognare_com_br`.`Pizza`
+-- Data for table `pizzariasognare.com.br`.`Pizza`
 -- -----------------------------------------------------
 START TRANSACTION;
-USE `pizzariasognare_com_br`;
+USE `pizzariasognare.com.br`;
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (1, 1, 1, 16.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (2, 1, 2, 26.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (3, 1, 3, 36.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (1, 1, 1, 16.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (2, 1, 2, 26.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (3, 1, 3, 36.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (4, 2, 1, 18.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (5, 2, 2, 28.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (6, 2, 3, 38.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (4, 2, 1, 18.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (5, 2, 2, 28.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (6, 2, 3, 38.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (7, 3, 1, 19.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (8, 3, 2, 29.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (9, 3, 3, 39.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (7, 3, 1, 19.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (8, 3, 2, 29.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (9, 3, 3, 39.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (10, 4, 1, 17.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (11, 4, 2, 27.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (12, 4, 3, 37.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (10, 4, 1, 17.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (11, 4, 2, 27.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (12, 4, 3, 37.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (13, 5, 1, 18.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (14, 5, 2, 28.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (15, 5, 3, 38.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (13, 5, 1, 18.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (14, 5, 2, 28.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (15, 5, 3, 38.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (16, 6, 1, 18.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (17, 6, 2, 28.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (18, 6, 3, 38.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (16, 6, 1, 18.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (17, 6, 2, 28.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (18, 6, 3, 38.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (19, 7, 1, 18.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (20, 7, 2, 28.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (21, 7, 3, 38.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (19, 7, 1, 18.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (20, 7, 2, 28.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (21, 7, 3, 38.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (22, 8, 1, 19.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (23, 8, 2, 29.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (24, 8, 3, 39.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (22, 8, 1, 19.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (23, 8, 2, 29.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (24, 8, 3, 39.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (25, 9, 1, 20.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (26, 9, 2, 40.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (27, 9, 3, 40.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (25, 9, 1, 20.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (26, 9, 2, 40.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (27, 9, 3, 40.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (28, 10, 1, 17.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (29, 10, 2, 27.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (30, 10, 3, 37.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (28, 10, 1, 17.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (29, 10, 2, 27.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (30, 10, 3, 37.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (31, 11, 1, 20.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (32, 11, 2, 40.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (33, 11, 3, 40.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (31, 11, 1, 20.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (32, 11, 2, 40.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (33, 11, 3, 40.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (34, 12, 1, 21.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (35, 12, 2, 31.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (36, 12, 3, 41.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (34, 12, 1, 21.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (35, 12, 2, 31.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (36, 12, 3, 41.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (37, 13, 1, 22.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (38, 13, 2, 32.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (39, 13, 3, 42.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (37, 13, 1, 22.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (38, 13, 2, 32.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (39, 13, 3, 42.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (40, 14, 1, 17.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (41, 14, 2, 27.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (42, 14, 3, 37.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (40, 14, 1, 17.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (41, 14, 2, 27.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (42, 14, 3, 37.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (43, 15, 1, 21.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (44, 15, 2, 31.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (45, 15, 3, 41.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (43, 15, 1, 21.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (44, 15, 2, 31.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (45, 15, 3, 41.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (46, 16, 1, 23.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (47, 16, 2, 33.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (48, 16, 3, 43.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (46, 16, 1, 23.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (47, 16, 2, 33.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (48, 16, 3, 43.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (49, 17, 1, 15.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (50, 17, 2, 25.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (51, 17, 3, 35.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (49, 17, 1, 15.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (50, 17, 2, 25.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (51, 17, 3, 35.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (52, 18, 1, 16.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (53, 18, 2, 26.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (54, 18, 3, 36.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (52, 18, 1, 16.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (53, 18, 2, 26.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (54, 18, 3, 36.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (55, 19, 1, 17.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (56, 19, 2, 27.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (57, 19, 3, 37.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (55, 19, 1, 17.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (56, 19, 2, 27.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (57, 19, 3, 37.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (58, 20, 1, 20.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (59, 20, 2, 30.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (60, 20, 3, 40.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (58, 20, 1, 20.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (59, 20, 2, 30.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (60, 20, 3, 40.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (61, 21, 1, 18.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (62, 21, 2, 28.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (63, 21, 3, 38.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (61, 21, 1, 18.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (62, 21, 2, 28.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (63, 21, 3, 38.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (64, 22, 1, 19.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (65, 22, 2, 29.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (66, 22, 3, 39.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (64, 22, 1, 19.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (65, 22, 2, 29.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (66, 22, 3, 39.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (67, 23, 1, 17.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (68, 23, 2, 27.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (69, 23, 3, 37.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (67, 23, 1, 17.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (68, 23, 2, 27.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (69, 23, 3, 37.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (70, 24, 1, 17.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (71, 24, 2, 27.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (72, 24, 3, 37.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (70, 24, 1, 17.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (71, 24, 2, 27.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (72, 24, 3, 37.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (73, 25, 1, 21.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (74, 25, 2, 31.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (75, 25, 3, 41.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (73, 25, 1, 21.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (74, 25, 2, 31.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (75, 25, 3, 41.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (76, 26, 1, 22.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (77, 26, 2, 32.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (78, 26, 3, 42.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (76, 26, 1, 22.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (77, 26, 2, 32.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (78, 26, 3, 42.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (79, 27, 1, 23.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (80, 27, 2, 33.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (81, 27, 3, 43.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (79, 27, 1, 23.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (80, 27, 2, 33.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (81, 27, 3, 43.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (82, 28, 1, 16.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (83, 28, 2, 26.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (84, 28, 3, 36.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (82, 28, 1, 16.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (83, 28, 2, 26.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (84, 28, 3, 36.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (85, 29, 1, 17.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (86, 29, 2, 27.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (87, 29, 3, 37.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (85, 29, 1, 17.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (86, 29, 2, 27.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (87, 29, 3, 37.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (88, 30, 1, 18.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (89, 30, 2, 28.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (90, 30, 3, 38.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (88, 30, 1, 18.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (89, 30, 2, 28.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (90, 30, 3, 38.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (91, 31, 1, 15.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (92, 32, 1, 18.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (93, 33, 1, 16.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (94, 34, 1, 19.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (95, 35, 1, 19.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (96, 36, 1, 17.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (97, 37, 1, 18.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (91, 31, 1, 15.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (92, 32, 1, 18.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (93, 33, 1, 16.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (94, 34, 1, 19.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (95, 35, 1, 19.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (96, 36, 1, 17.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (97, 37, 1, 18.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (98, 31, 2, 25.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (99, 32, 2, 28.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (100, 33, 2, 26.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (101, 34, 2, 29.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (102, 35, 2, 29.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (103, 36, 2, 27.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (104, 37, 2, 28.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (98, 31, 2, 25.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (99, 32, 2, 28.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (100, 33, 2, 26.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (101, 34, 2, 29.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (102, 35, 2, 29.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (103, 36, 2, 27.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (104, 37, 2, 28.9, DEFAULT);
 
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (105, 31, 3, 35.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (106, 32, 3, 38.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (107, 33, 3, 36.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (108, 34, 3, 39.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (109, 35, 3, 39.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (110, 36, 3, 37.9, DEFAULT);
-INSERT INTO `pizzariasognare_com_br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (111, 37, 3, 38.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (105, 31, 3, 35.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (106, 32, 3, 38.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (107, 33, 3, 36.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (108, 34, 3, 39.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (109, 35, 3, 39.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (110, 36, 3, 37.9, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (111, 37, 3, 38.9, DEFAULT);
 
 COMMIT;

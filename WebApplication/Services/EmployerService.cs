@@ -116,15 +116,17 @@ namespace WebApplication.Services
             ReturnStatus return_status = new ReturnStatus();
 
             return_status = this.user_service.Insert(employer_user.User);
-            if (return_status.success)
+            if (!return_status.success)
             {
-                employer_user.Employer.user_id = this.user_service.GetUser(employer_user.User.email).id;
-                if (this.employer_repository.Insert(employer_user.Employer))
-                {
-                    return_status.success = true;
-                    return_status.message = "Funcionário adicionado com sucesso";
-                    return return_status;
-                }
+                return_status.message = "Erro ao adicionar usuário do funcionário.";
+            }
+
+            employer_user.Employer.user_id = this.user_service.GetUser(employer_user.User.email).id;
+            if (this.employer_repository.Insert(employer_user.Employer))
+            {
+                return_status.success = true;
+                return_status.message = "Funcionário adicionado com sucesso";
+                return return_status;
             }
 
             return_status.message = "Erro ao adicionar funcionário.";

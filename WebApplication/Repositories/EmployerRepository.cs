@@ -36,14 +36,14 @@ namespace WebApplication.Repositories
         /// </summary>
         /// <param name="Employer">Objeto empregado</param>
         /// <returns>Status da inserção (Verdade ou falso)</returns>
-        bool Insert(Employer Employer);
+        bool Insert(Employer employer);
 
         /// <summary>
         /// Método atualiza um empregado.
         /// </summary>
         /// <param name="Employer">Objeto empregado</param>
         /// <returns>Status da atualização (Verdade ou falso)</returns>
-        bool Update(Employer Employer);
+        bool Update(Employer employer);
     }
 
     public class EmployerRepository : IEmployerRepository
@@ -117,8 +117,8 @@ namespace WebApplication.Repositories
         /// <returns>Status da inserção (Verdade ou falso)</returns>
         public bool Insert(Employer employer)
         {
-            try
-            {
+            //try
+            //{
                 employer.enabled = 1;
 
                 using (Entities entities = new Entities())
@@ -128,11 +128,11 @@ namespace WebApplication.Repositories
                 }
 
                 return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            //}
+            //catch (Exception)
+            //{
+               // return false;
+            //}
         }
 
         /// <summary>

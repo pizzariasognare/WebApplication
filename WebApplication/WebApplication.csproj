@@ -189,12 +189,14 @@
     <Compile Include="Controllers\EmployerController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\DrinkController.cs" />
     <Compile Include="Controllers\PizzaController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AppUser.cs" />
+    <Compile Include="Models\Drink.cs" />
     <Compile Include="Models\DTO\Auth.cs" />
     <Compile Include="Models\CustomerAddress.cs" />
     <Compile Include="Models\DTO\EmployerUser.cs" />
@@ -204,6 +206,7 @@
     <Compile Include="Models\DTO\ReturnStatus.cs" />
     <Compile Include="Models\Ingredient.cs" />
     <Compile Include="Models\PizzaFlavorIngredient.cs" />
+    <Compile Include="Models\DrinkType.cs" />
     <Compile Include="Models\PizzaSize.cs" />
     <Compile Include="Models\PizzaFlavor.cs" />
     <Compile Include="Models\Pizza.cs" />
@@ -212,8 +215,10 @@
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CustomerAddressRepository.cs" />
+    <Compile Include="Repositories\DrinkRepository.cs" />
     <Compile Include="Repositories\EmployerRepository.cs" />
     <Compile Include="Repositories\CustomerRepository.cs" />
+    <Compile Include="Repositories\DrinkTypeRepository.cs" />
     <Compile Include="Repositories\PizzaFlavorRepository.cs" />
     <Compile Include="Repositories\IngredientRepository.cs" />
     <Compile Include="Repositories\PizzaSizeRepository.cs" />
@@ -226,6 +231,7 @@
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\PizzaFlavorService.cs" />
     <Compile Include="Services\PizzaService.cs" />
+    <Compile Include="Services\DrinkService.cs" />
     <Compile Include="Services\ZipCodeService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\ProfileService.cs" />
@@ -293,7 +299,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Shared\Layout.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -324,6 +332,7 @@
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Customer\EditUser.cshtml" />
     <Content Include="Views\PizzaFlavor\Index.cshtml" />
+    <Content Include="Views\Drink\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -21,5 +21,7 @@ namespace WebApplication.Models
         public DbSet<Ingredient> Ingredient { get; set; }
         public DbSet<PizzaFlavorIngredient> PizzaFlavorIngredient { get; set; }
         public DbSet<PizzaSize> PizzaSize { get; set; }
+        public DbSet<DrinkType> DrinkType { get; set; }
+        public DbSet<Drink> Drink { get; set; }
     }
 }

@@ -37,16 +37,23 @@ namespace WebApplication.Repositories
         /// <param name="customer_id">Identificador do cliente.</param>
         /// <returns>Lista de endereços do cliente.</returns>
         List<CustomerAddress> GetCustomerAddresses(int customer_id);
+
+        /// <summary>
+        /// Método retorna o último endereço inseriodo de um cliente.
+        /// </summary>
+        /// <param name="customer_id">Identificador do cliente</param>
+        /// <returns>Endereço do cliente.</returns>
+        CustomerAddress GetLastCustomerAddress(int customer_id);
     }
 
     public class CustomerAddressRepository : ICustomerAddressRepository
     {
-        private ZipCodeRepository zip_code_repository;
+        private IZipCodeRepository zip_code_repository;        
 
         public CustomerAddressRepository()
         {
-            this.zip_code_repository = new ZipCodeRepository();
-        }        
+            this.zip_code_repository = new ZipCodeRepository();            
+        }
 
         /// <summary>
         /// Método insere um endereço de um cliente.
@@ -120,11 +127,37 @@ namespace WebApplication.Repositories
         /// <returns>Endereços do cliente.</returns>
         public CustomerAddress GetCustomerAddress(int id)
         {
+            ICustomerRepository customer_repository = new CustomerRepository();
+
             CustomerAddress customer_address = new CustomerAddress();
 
             using (Entities entities = new Entities())
             {
                 customer_address = entities.CustomerAddress.Where(c => c.id == id).FirstOrDefault();
+
+                if (customer_address != null)
+                {
+                    customer_address.ZipCode = this.zip_code_repository.GetZipCode(customer_address.zip_code);
+
+                    customer_address.Customer = customer_repository.GetCustomer(customer_address.customer_id);
+                }
+            }
+
+            return customer_address;
+        }
+
+        /// <summary>
+        /// Método retorna o último endereço inseriodo de um cliente.
+        /// </summary>
+        /// <param name="customer_id">Identificador do cliente</param>
+        /// <returns>Endereço do cliente.</returns>
+        public CustomerAddress GetLastCustomerAddress(int customer_id)
+        {
+            CustomerAddress customer_address = new CustomerAddress();
+
+            using (Entities entities = new Entities())
+            {
+                customer_address = entities.CustomerAddress.Where(c => c.customer_id == customer_id).OrderByDescending(c => c.id).FirstOrDefault();
 
                 if (customer_address != null)
                 {

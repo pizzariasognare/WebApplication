@@ -1,0 +1,164 @@
+﻿@model WebApplication.Models.Order
+
+@{
+    ViewBag.Title = "Pedido";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div>
+            <div class="dropdown pull-right">
+                <button class="btn btn-danger dropdown-toggle" type="button" id="mais-dropdown-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Mais <span class="caret"></span></button>
+                <ul class="dropdown-menu" aria-labelledby="mais-dropdown-menu">
+                    <li>
+                        <a href="@Url.Action("Edit", "Order", new { id = Model.id })" title="Visualizar pedidos"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar pedido</a>                        
+                        <a href="@Url.Action("Index", "Order")" title="Visualizar pedidos"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Visualizar pedidos</a>
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    <li>
+                        <a href="@Url.Action("Create", "OrderPizza", new { id = Model.id })" title="Adicionar pizza"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar pizza</a>
+                    </li>
+                </ul>
+            </div>
+            <h3 class="bars">Pedido</h3>
+        </div>
+        <hr />
+        <div>
+            <dl class="dl-horizontal">
+                <dt>Código</dt>
+                <dd>
+                    @Html.DisplayFor(model => model.id)
+                </dd>
+                <dt>Data</dt>
+                <dd>
+                    @(Model.order_date.ToString("dd/MM/yyyy"))
+                </dd>
+                <dt>Forma de Pagamento</dt>
+                <dd>
+                    @Html.DisplayFor(model => model.PaymentType.name)
+                </dd>
+                <dt>Preço</dt>
+                <dd>
+                    @Html.DisplayFor(model => model.price)
+                </dd>
+                <dt>Desconto</dt>
+                <dd>
+                    @Html.DisplayFor(model => model.discount)
+                </dd>
+                <dt>Taxa de Entrega</dt>
+                <dd>
+                    @Html.DisplayFor(model => model.delivery_price)
+                </dd>
+                <dt>Preço Final</dt>
+                <dd>
+                    @Html.DisplayFor(model => model.final_price)
+                </dd>
+                <dt>Pagamento</dt>
+                <dd>
+                    @Html.DisplayFor(model => model.payment)
+                </dd>
+                <dt>Troco</dt>
+                <dd>
+                    @Html.DisplayFor(model => model.change)
+                </dd>
+                <dt>OBS</dt>
+                <dd>
+                    @Html.DisplayFor(model => model.note)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            @if (Model.OrderPizza.Count() > 0)
+            {
+                <h3 class="bars">Pizzas</h3>
+                <hr />
+                foreach (var item in Model.OrderPizza)
+                {
+                    <div class="pull-right">
+                        <a href="@Url.Action("Edit", "OrderPizza", new { id = item.id })" class="btn btn-warning" title="Editar pizza do pedido"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                    </div>
+                    <div>
+                        <dl class="dl-horizontal">
+                            <dt>
+                                Quantidade
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(modelItem => item.amount)
+                            </dd>
+                            <dt>
+                                Tamanho
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(modelItem => item.Pizza.PizzaSize.name)
+                            </dd>
+                            <dt>
+                                Sabor
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(modelItem => item.Pizza.PizzaFlavor.name)
+                            </dd>
+                        </dl>
+                    </div>
+                }
+            }
+        </div>
+        <div>
+            <h3 class="bars">Cliente</h3>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>Nome</dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CustomerAddress.Customer.name)
+                </dd>
+                <dt>
+                    CEP
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CustomerAddress.zip_code)
+                </dd>
+                <dt>
+                    Endereço
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CustomerAddress.address)
+                </dd>
+                <dt>
+                    Número
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CustomerAddress.number)
+                </dd>
+                <dt>
+                    Complemento
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CustomerAddress.complement)
+                </dd>
+                <dt>
+                    Bairro
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CustomerAddress.neighborhood)
+                </dd>
+                <dt>
+                    Cidade
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CustomerAddress.city)
+                </dd>
+                <dt>
+                    UF
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CustomerAddress.acronym_city)
+                </dd>
+                <dt>
+                    Referência
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CustomerAddress.reference_point)
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>

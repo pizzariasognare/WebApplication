@@ -12,16 +12,16 @@ namespace WebApplication.Services
         /// <summary>
         /// Método insere um cliente.
         /// </summary>
-        /// <param name="CustomerAddress">Objeto cliente</param>
+        /// <param name="customer_address">Objeto cliente</param>
         /// <returns>Objeto</returns>
-        ReturnStatus Insert(CustomerAddress CustomerAddress);
+        ReturnStatus Insert(CustomerAddress customer_address);
 
         /// <summary>
         /// Método atualiza um cliente.
         /// </summary>
-        /// <param name="CustomerAddress">Objeto cliente</param>
+        /// <param name="customer_address">Objeto cliente</param>
         /// <returns>Objeto</returns>
-        ReturnStatus Update(CustomerAddress CustomerAddress);
+        ReturnStatus Update(CustomerAddress customer_address);
 
         /// <summary>
         /// Método retorna um endereço.
@@ -29,6 +29,13 @@ namespace WebApplication.Services
         /// <param name="customer_id">Identificador do endereço.</param>
         /// <returns>Endereços do cliente.</returns>
         CustomerAddress GetCustomerAddress(int id);
+
+        /// <summary>
+        /// Método retorna o último endereço inseriodo de um cliente.
+        /// </summary>
+        /// <param name="customer_id">Identificador do cliente</param>
+        /// <returns>Endereço do cliente.</returns>
+        CustomerAddress GetLastCustomerAddress(int customer_id);
     }
 
     public class CustomerAddressService : ICustomerAddressService
@@ -95,6 +102,16 @@ namespace WebApplication.Services
         public CustomerAddress GetCustomerAddress(int id)
         {
             return this.customer_address_repository.GetCustomerAddress(id);
+        }
+
+        /// <summary>
+        /// Método retorna o último endereço inseriodo de um cliente.
+        /// </summary>
+        /// <param name="customer_id">Identificador do cliente</param>
+        /// <returns>Endereço do cliente.</returns>
+        public CustomerAddress GetLastCustomerAddress(int customer_id)
+        {
+            return this.customer_address_repository.GetLastCustomerAddress(customer_id);
         }
     }
 }

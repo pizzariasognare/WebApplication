@@ -1,0 +1,114 @@
+﻿@model WebApplication.Models.CustomerAddress
+
+@{
+    ViewBag.Title = "Editar Endereço";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div>
+            <div class="pull-right">
+                <a href="@Url.Action("Details", "Customer", new { id = ViewBag.Customer.id })" class="btn btn-default" title="Visualizar cliente"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
+            </div>
+            <h3 class="bars">Editar Endereço</h3>
+            <h4>Cliente @ViewBag.Customer.name</h4>
+            <hr />
+        </div>
+        <div>
+            @using (Html.BeginForm())
+            {
+                <div class="form-horizontal">
+
+                    @Html.HiddenFor(model => model.id)
+                    @Html.HiddenFor(model => model.customer_id)
+                    @Html.HiddenFor(model => model.latitude)
+                    @Html.HiddenFor(model => model.longitude)
+                    @Html.HiddenFor(model => model.enabled)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.zip_code, "CEP", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.zip_code, new { htmlAttributes = new { @class = "form-control", @max = "99999999", @type = "number" } })
+                            @Html.ValidationMessageFor(model => model.zip_code, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.address, "Endereço", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control", @maxlength = "255" } })
+                            @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.number, "Número", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.number, new { htmlAttributes = new { @class = "form-control", @maxlength = "11" } })
+                            @Html.ValidationMessageFor(model => model.number, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.complement, "Complemento", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.complement, new { htmlAttributes = new { @class = "form-control", @maxlength = "50" } })
+                            @Html.ValidationMessageFor(model => model.complement, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.neighborhood, "Bairro", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.neighborhood, new { htmlAttributes = new { @class = "form-control", @maxlength = "50" } })
+                            @Html.ValidationMessageFor(model => model.neighborhood, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.city, "Cidade", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "form-control", @maxlength = "50" } })
+                            @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.acronym_city, "UF", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.acronym_city, new { htmlAttributes = new { @class = "form-control", @maxlength = "2" } })
+                            @Html.ValidationMessageFor(model => model.acronym_city, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.reference_point, "Referência", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.reference_point, new { htmlAttributes = new { @class = "form-control", @maxlength = "100" } })
+                            @Html.ValidationMessageFor(model => model.reference_point, "", new { @class = "text-danger" })
+                        </div>
+                    </div>                    
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.enabled, "Habilitado", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-3">
+                            @Html.CheckBox("enabled-ckb", htmlAttributes: new { @style = "margin-top:12px;" })
+                            @Html.ValidationMessageFor(model => model.enabled, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group pull-right">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" class="btn btn-primary" title="Salvar">
+                                <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/Scripts/CustomerAddress/Edit.js")

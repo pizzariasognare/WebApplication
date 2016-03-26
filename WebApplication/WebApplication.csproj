@@ -186,6 +186,8 @@
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CustomerAddressController.cs" />
+    <Compile Include="Controllers\OrderPizzaController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\EmployerController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -197,6 +199,11 @@
     </Compile>
     <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\Drink.cs" />
+    <Compile Include="Models\OrderLog.cs" />
+    <Compile Include="Models\OrderDrink.cs" />
+    <Compile Include="Models\PaymentType.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderStatus.cs" />
     <Compile Include="Models\DTO\Auth.cs" />
     <Compile Include="Models\CustomerAddress.cs" />
     <Compile Include="Models\DTO\EmployerUser.cs" />
@@ -205,6 +212,7 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\DTO\ReturnStatus.cs" />
     <Compile Include="Models\Ingredient.cs" />
+    <Compile Include="Models\OrderPizza.cs" />
     <Compile Include="Models\PizzaFlavorIngredient.cs" />
     <Compile Include="Models\DrinkType.cs" />
     <Compile Include="Models\PizzaSize.cs" />
@@ -214,8 +222,14 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\OrderDrinkRepository.cs" />
+    <Compile Include="Repositories\OrderPizzaRepository.cs" />
     <Compile Include="Repositories\CustomerAddressRepository.cs" />
     <Compile Include="Repositories\DrinkRepository.cs" />
+    <Compile Include="Repositories\PaymentTypeRepository.cs" />
+    <Compile Include="Repositories\OrderLogRepository.cs" />
+    <Compile Include="Repositories\OrderRepository.cs" />
+    <Compile Include="Repositories\OrderStatusRepository.cs" />
     <Compile Include="Repositories\EmployerRepository.cs" />
     <Compile Include="Repositories\CustomerRepository.cs" />
     <Compile Include="Repositories\DrinkTypeRepository.cs" />
@@ -227,8 +241,13 @@
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\ProfileRepository.cs" />
     <Compile Include="Services\CustomerAddressService.cs" />
+    <Compile Include="Services\OrderPizzaService.cs" />
+    <Compile Include="Services\OrderLogService.cs" />
+    <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\EmployerService.cs" />
     <Compile Include="Services\CustomerService.cs" />
+    <Compile Include="Services\PaymentTypeService.cs" />
+    <Compile Include="Services\PizzaSizeService.cs" />
     <Compile Include="Services\PizzaFlavorService.cs" />
     <Compile Include="Services\PizzaService.cs" />
     <Compile Include="Services\DrinkService.cs" />
@@ -296,6 +315,7 @@
     <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.wmuSlider.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Order\Edit.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Shared\Layout.js" />
@@ -333,6 +353,11 @@
     <Content Include="Views\Customer\EditUser.cshtml" />
     <Content Include="Views\PizzaFlavor\Index.cshtml" />
     <Content Include="Views\Drink\Index.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Order\Edit.cshtml" />
+    <Content Include="Views\Order\Details.cshtml" />
+    <Content Include="Views\OrderPizza\Create.cshtml" />
+    <Content Include="Views\OrderPizza\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

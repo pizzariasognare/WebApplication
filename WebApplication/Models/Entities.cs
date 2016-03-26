@@ -23,5 +23,11 @@ namespace WebApplication.Models
         public DbSet<PizzaSize> PizzaSize { get; set; }
         public DbSet<DrinkType> DrinkType { get; set; }
         public DbSet<Drink> Drink { get; set; }
+        public DbSet<PaymentType> PaymentType { get; set; }
+        public DbSet<OrderStatus> OrderStatus { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<OrderLog> OrderLog { get; set; }
+        public DbSet<OrderPizza> OrderPizza { get; set; }
+        public DbSet<OrderDrink> OrderDrink { get; set; }
     }
 }

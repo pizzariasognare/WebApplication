@@ -10,13 +10,7 @@ namespace WebApplication.Models
 {
     [Table("Pizza")]
     public class Pizza
-    {
-        public Pizza()
-        {
-            this.PizzaFlavor = new PizzaFlavor();
-            this.PizzaSize = new PizzaSize();
-        }
-
+    {  
         [Key]
         [Column("id")]
         public int id { get; set; }

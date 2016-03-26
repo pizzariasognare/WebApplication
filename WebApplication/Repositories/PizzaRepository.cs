@@ -39,12 +39,18 @@ namespace WebApplication.Repositories
         /// <returns>Lista de pizzas.</returns>
         public List<Pizza> GetPizzas()
         {
-            List<Pizza> pizzas = new List<Pizza>();            
+            List<Pizza> pizzas = new List<Pizza>();
 
             using (Entities entities = new Entities())
             {
+                List<Pizza> _pizzas = entities.Pizza.OrderBy(p => p.id).ToList();
 
-                pizzas = entities.Pizza.OrderBy(p => p.id).ToList();              
+                foreach (var _pizza in _pizzas)
+                {
+                    _pizza.PizzaFlavor = pizza_flavor_repository.GetPizzaFlavor(_pizza.pizza_flavor_id);
+                    _pizza.PizzaSize = pizza_size_repository.GetPizzaSize(_pizza.pizza_size_id);
+                    pizzas.Add(_pizza);
+                }
             }
 
             return pizzas;
@@ -62,6 +68,12 @@ namespace WebApplication.Repositories
             using (Entities entities = new Entities())
             {
                 pizza = entities.Pizza.Where(p => p.id == id).FirstOrDefault();
+
+                if (pizza != null)
+                {
+                    pizza.PizzaFlavor = pizza_flavor_repository.GetPizzaFlavor(pizza.pizza_flavor_id);
+                    pizza.PizzaSize = pizza_size_repository.GetPizzaSize(pizza.pizza_size_id);                    
+                }
             }
 
             return pizza;

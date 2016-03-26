@@ -10,10 +10,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema pizzariasognare.com.br
 -- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema pizzariasognare.com.br
--- -----------------------------------------------------
 USE `pizzariasognare.com.br` ;
 
 -- -----------------------------------------------------
@@ -229,14 +225,16 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`Order` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '',
-  `balcony` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '',
-  `payment_type_id` INT NOT NULL COMMENT '',
-  `customer_address_id` INT UNSIGNED NULL COMMENT '',
-  `price` DECIMAL(15,2) NOT NULL COMMENT '',
+  `order_date` DATE NOT NULL COMMENT '',  
+  `payment_type_id` INT NULL COMMENT '',
+  `customer_address_id` INT UNSIGNED NOT NULL COMMENT '',
+  `price` DECIMAL(15,2) NOT NULL DEFAULT 0.00 COMMENT '',
   `discount` DECIMAL(15,2) NOT NULL DEFAULT 0.00 COMMENT '',
-  `final_price` DECIMAL(15,2) NOT NULL COMMENT '',
+  `final_price` DECIMAL(15,2) NOT NULL DEFAULT 0.00 COMMENT '',
+  `change_for` DECIMAL(15,2) NOT NULL DEFAULT 0.00 COMMENT '',
   `change` DECIMAL(15,2) NOT NULL DEFAULT 0.00 COMMENT '',
-  `delivery_price` DECIMAL(15,2) NOT NULL DEFAULT 0.00 COMMENT '',
+  `delivery_price` DECIMAL(15,2) NOT NULL DEFAULT 0.00 COMMENT '',  
+  `note` VARCHAR(255) NULL COMMENT '',
   PRIMARY KEY (`id`)  COMMENT '',
   INDEX `payment_type_id_FK` (`payment_type_id` ASC)  COMMENT '',
   INDEX `orders_customer_address_id_FK` (`customer_address_id` ASC)  COMMENT '',
@@ -257,9 +255,11 @@ ENGINE = InnoDB;
 -- Table `pizzariasognare.com.br`.`OrderPizza`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`OrderPizza` (
+  `id` INT UNSIGNED NOT NULL COMMENT '',
   `order_id` INT UNSIGNED NOT NULL COMMENT '',
   `pizza_id` INT UNSIGNED ZEROFILL NOT NULL COMMENT '',
-  PRIMARY KEY (`order_id`, `pizza_id`)  COMMENT '',
+  `amount` INT UNSIGNED NOT NULL DEFAULT 1 COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '',
   INDEX `pizza_id_FK` (`pizza_id` ASC)  COMMENT '',
   INDEX `order_id_FK` (`order_id` ASC)  COMMENT '',
   CONSTRAINT `OrderPizza_Order_FK`
@@ -279,9 +279,11 @@ ENGINE = InnoDB;
 -- Table `pizzariasognare.com.br`.`OrderDrink`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`OrderDrink` (
+  `id` INT UNSIGNED NOT NULL COMMENT '',
   `order_id` INT UNSIGNED NOT NULL COMMENT '',
   `drink_id` INT UNSIGNED NOT NULL COMMENT '',
-  PRIMARY KEY (`order_id`, `drink_id`)  COMMENT '',
+  `amount` INT UNSIGNED NOT NULL DEFAULT 1 COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '',
   INDEX `drink_id_FK` (`drink_id` ASC)  COMMENT '',
   INDEX `order_id_FK` (`order_id` ASC)  COMMENT '',
   CONSTRAINT `OrdersDrink_Order_FK`
@@ -408,9 +410,11 @@ ENGINE = InnoDB;
 -- Table `pizzariasognare.com.br`.`OrderCake`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`OrderCake` (
+  `id` INT UNSIGNED NOT NULL COMMENT '',
   `order_id` INT UNSIGNED NOT NULL COMMENT '',
   `cake_id` INT UNSIGNED NOT NULL COMMENT '',
-  PRIMARY KEY (`order_id`, `cake_id`)  COMMENT '',
+  `amount` INT UNSIGNED NOT NULL DEFAULT 1 COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '',
   INDEX `cake_id_FK` (`cake_id` ASC)  COMMENT '',
   INDEX `order_id_FK` (`order_id` ASC)  COMMENT '',
   CONSTRAINT `OrderCake_Order_FK`
@@ -440,16 +444,6 @@ INSERT INTO `pizzariasognare.com.br`.`Profile` (`id`, `name`, `level`) VALUES (2
 INSERT INTO `pizzariasognare.com.br`.`Profile` (`id`, `name`, `level`) VALUES (3, 'Atendente', 30);
 INSERT INTO `pizzariasognare.com.br`.`Profile` (`id`, `name`, `level`) VALUES (4, 'Gerente', 40);
 INSERT INTO `pizzariasognare.com.br`.`Profile` (`id`, `name`, `level`) VALUES (5, 'Administrador', 50);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `pizzariasognare.com.br`.`User`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `pizzariasognare.com.br`;
-INSERT INTO `pizzariasognare.com.br`.`User` (`id`, `profile_id`, `email`, `password`, `enabled`) VALUES (1, 5, 'alexsilvamartinsasm@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1);
 
 COMMIT;
 
@@ -880,4 +874,27 @@ INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_si
 INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (110, 36, 3, 37.9, DEFAULT);
 INSERT INTO `pizzariasognare.com.br`.`Pizza` (`id`, `pizza_flavor_id`, `pizza_size_id`, `price`, `enabled`) VALUES (111, 37, 3, 38.9, DEFAULT);
 
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `pizzariasognare.com.br`.`DrinkType`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `pizzariasognare.com.br`;
+INSERT INTO `pizzariasognare.com.br`.`DrinkType` (`id`, `name`) VALUES (1, 'Refrigerante');
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `pizzariasognare.com.br`.`Drink`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `pizzariasognare.com.br`;
+INSERT INTO `pizzariasognare.com.br`.`Drink` (`id`, `drink_type_id`, `name`, `price`, `image`, `enabled`) VALUES (1, 1, 'Coca-Cola 2L', 10.00, NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Drink` (`id`, `drink_type_id`, `name`, `price`, `image`, `enabled`) VALUES (2, 1, 'Guaraná Antártica 2L', 08.00, NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Drink` (`id`, `drink_type_id`, `name`, `price`, `image`, `enabled`) VALUES (3, 1, 'Fanta Laranja 2L', 08.00, NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Drink` (`id`, `drink_type_id`, `name`, `price`, `image`, `enabled`) VALUES (4, 1, 'Fanta Uva 2L', 08.00, NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Drink` (`id`, `drink_type_id`, `name`, `price`, `image`, `enabled`) VALUES (5, 1, 'Sprite 2L', 08.00, NULL, DEFAULT);
+INSERT INTO `pizzariasognare.com.br`.`Drink` (`id`, `drink_type_id`, `name`, `price`, `image`, `enabled`) VALUES (6, 1, 'Coca-Cola Zero 2L', 10.00, NULL, DEFAULT);
 COMMIT;

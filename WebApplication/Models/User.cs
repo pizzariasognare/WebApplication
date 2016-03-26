@@ -30,6 +30,6 @@ namespace WebApplication.Models
 
         public short enabled { get; set; }
         
-        public Profile Profile;
+        public Profile Profile;        
     }
 }

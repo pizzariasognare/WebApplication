@@ -24,6 +24,13 @@ namespace WebApplication.Repositories
         Employer GetEmployer(int id);
 
         /// <summary>
+        /// Método retorna um funcionário por usuário.
+        /// </summary>
+        /// <param name="user_id">Identificador do usuário</param>
+        /// <returns>Objeto</returns>
+        Employer GetEmployerByUserId(int user_id);
+
+        /// <summary>
         /// Método verifica se existe algum empregado com o telefone.
         /// </summary>
         /// <param name="phone">Telefone do empregado</param>
@@ -48,6 +55,13 @@ namespace WebApplication.Repositories
 
     public class EmployerRepository : IEmployerRepository
     {
+        private IUserRepository user_repository;
+
+        public EmployerRepository()
+        {
+            this.user_repository = new UserRepository();
+        }
+
         /// <summary>
         /// Método retorna uma lista de empregados.
         /// </summary>
@@ -79,11 +93,29 @@ namespace WebApplication.Repositories
 
                 if (employer != null)
                 {
-                    if (employer.user_id != null)
-                    {
-                        UserRepository user_serivce = new UserRepository();
-                        employer.User = user_serivce.GetUser(employer.user_id.Value);
-                    }                    
+                    employer.User = this.user_repository.GetUser(employer.user_id.Value);
+                }
+            }
+
+            return employer;
+        }
+
+        /// <summary>
+        /// Método retorna um empregado.
+        /// </summary>
+        /// <param name="id">Identificador do empregado</param>
+        /// <returns>Objeto</returns>
+        public Employer GetEmployerByUserId(int user_id)
+        {
+            Employer employer = new Employer();
+
+            using (Entities entities = new Entities())
+            {
+                employer = entities.Employer.Where(e => e.user_id == user_id).FirstOrDefault();
+
+                if (employer != null)
+                {
+                    employer.User = this.user_repository.GetUser(employer.user_id.Value);
                 }
             }
 
@@ -117,8 +149,8 @@ namespace WebApplication.Repositories
         /// <returns>Status da inserção (Verdade ou falso)</returns>
         public bool Insert(Employer employer)
         {
-            //try
-            //{
+            try
+            {
                 employer.enabled = 1;
 
                 using (Entities entities = new Entities())
@@ -128,11 +160,11 @@ namespace WebApplication.Repositories
                 }
 
                 return true;
-            //}
-            //catch (Exception)
-            //{
-               // return false;
-            //}
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         /// <summary>

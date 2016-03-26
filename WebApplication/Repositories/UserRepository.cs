@@ -42,8 +42,8 @@ namespace WebApplication.Repositories
         /// <summary>
         /// Método insere um usuário.
         /// </summary>
-        /// <returns>Status da inserção (Verdade ou falso).</returns>
-        bool Insert(User user);
+        /// <returns>Id do usuário inserido.</returns>
+        int Insert(User user);
 
         /// <summary>
         /// Método atualiza um usuário.
@@ -54,11 +54,11 @@ namespace WebApplication.Repositories
     }
     public class UserRepository : IUserRepository
     {
-        private ProfileRepository profile_repository;
+        private IProfileRepository profile_repository;        
 
         public UserRepository()
-        { 
-            this.profile_repository = new ProfileRepository();
+        {
+            this.profile_repository = new ProfileRepository();            
         }
 
 
@@ -79,7 +79,7 @@ namespace WebApplication.Repositories
 
                 if (user != null)
                 {
-                    user.Profile = this.profile_repository.GetProfile(user.profile_id);
+                    user.Profile = this.profile_repository.GetProfile(user.profile_id);                    
                 }
             }
 
@@ -147,25 +147,28 @@ namespace WebApplication.Repositories
         /// <summary>
         /// Método insere um usuário.
         /// </summary>
-        /// <returns>Status da inserção (Verdade ou falso).</returns>
-        public bool Insert(User user)
+        /// <returns>Id do usuário inserido.</returns>
+        public int Insert(User user)
         {
             try
             {
                 user.password = Cryptography.ConvertToMD5(user.password);
                 user.enabled = 1;
 
+                int id = 0;
+
                 using (Entities entities = new Entities())
                 {
                     entities.User.Add(user);
                     entities.SaveChanges();
+                    id = user.id;
                 }
 
-                return true;
+                return id;
             }
             catch (Exception)
             {
-                return false;
+                return 0;
             }
         }
 

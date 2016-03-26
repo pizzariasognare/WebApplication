@@ -54,5 +54,7 @@ namespace WebApplication.Models
         public short enabled { get; set; }
 
         public ZipCode ZipCode;
+
+        public Customer Customer;
     }
 }

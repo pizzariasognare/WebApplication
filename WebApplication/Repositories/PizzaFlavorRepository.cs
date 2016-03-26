@@ -46,7 +46,15 @@ namespace WebApplication.Repositories
 
                 foreach (var _pizza_flavor in _pizza_flavors)
                 {
-                    pizza_flavors.Add(this.GetPizzaFlavor(_pizza_flavor.id));
+                    List<PizzaFlavorIngredient> pizza_flavor_ingredients = entities.PizzaFlavorIngredient.Where(psi => psi.pizza_flavor_id == _pizza_flavor.id).ToList();
+                    foreach (var pizza_flavor_ingredient in pizza_flavor_ingredients)
+                    {
+                        _pizza_flavor.Ingredient.Add(this.ingredient_repository.GetIngredient(pizza_flavor_ingredient.ingredient_id));
+                    }
+
+                    _pizza_flavor.Pizza = entities.Pizza.Where(p => p.pizza_flavor_id == _pizza_flavor.id).ToList();
+
+                    pizza_flavors.Add(_pizza_flavor);
                 }
             }
 

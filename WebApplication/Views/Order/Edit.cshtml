@@ -1,0 +1,121 @@
+﻿@model WebApplication.Models.Order
+
+@{
+    ViewBag.Title = "Editar Pedido";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div>
+            <div class="pull-right">
+                <a href="@Url.Action("Details", "Order", new { id = Model.id })" class="btn btn-default" title="Visualizar pedido"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
+            </div>
+            <h3 class="bars">Editar Pedido</h3>
+            <hr />
+        </div>
+        <div>
+            @using (Html.BeginForm())
+            {
+                <div class="form-horizontal">
+
+                    @Html.HiddenFor(model => model.id)
+                    @Html.HiddenFor(model => model.order_date)
+                    @Html.HiddenFor(model => model.customer_address_id)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.payment_type_id, "Forma de Pagamento", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.DropDownList("payment_type_id", null, String.Empty, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.payment_type_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.price, "Preço", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-2">
+                            <div class="input-group">
+                                <div class="input-group-addon">R$</div>
+                                @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control", @maxlength = "11" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.discount, "Desconto", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-2">
+                            <div class="input-group">
+                                <div class="input-group-addon">R$</div>
+                                @Html.EditorFor(model => model.discount, new { htmlAttributes = new { @class = "form-control", @maxlength = "11" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.discount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.delivery_price, "Taxa de Entrega", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-2">
+                            <div class="input-group">
+                                <div class="input-group-addon">R$</div>
+                                @Html.EditorFor(model => model.delivery_price, new { htmlAttributes = new { @class = "form-control", @maxlength = "11" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.delivery_price, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.final_price, "Preço Final", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-2">
+                            <div class="input-group">
+                                <div class="input-group-addon">R$</div>
+                                @Html.EditorFor(model => model.final_price, new { htmlAttributes = new { @class = "form-control", @maxlength = "11" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.final_price, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.payment, "Pagamento", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-2">
+                            <div class="input-group">
+                                <div class="input-group-addon">R$</div>
+                                @Html.EditorFor(model => model.payment, new { htmlAttributes = new { @class = "form-control", @maxlength = "11" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.payment, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.change, "Troco", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-2">
+                            <div class="input-group">
+                                <div class="input-group-addon">R$</div>
+                                @Html.EditorFor(model => model.change, new { htmlAttributes = new { @class = "form-control", @maxlength = "11" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.change, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.note, "OBS", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.note, new { htmlAttributes = new { @class = "form-control", @maxlength = "255", @rows = "4" } })
+                            @Html.ValidationMessageFor(model => model.note, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group pull-right">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" class="btn btn-primary" title="Salvar">
+                                <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                </div>
+            }
+        </div>        
+    </div>
+</div>
+
+@Scripts.Render("~/Scripts/Order/Edit.js")

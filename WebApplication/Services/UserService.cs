@@ -111,11 +111,11 @@ namespace WebApplication.Services
             }
 
             // Insere o usuário.
-            if (this.user_repository.Insert(user))
+            int user_id_inserted = this.user_repository.Insert(user);
+            if (user_id_inserted > 0)
             {
-                // Vincula usuário a cliente.
-                _user = this.user_repository.GetUser(user.email);
-                customer.user_id = _user.id;
+                // Vincula usuário a cliente.                
+                customer.user_id = user_id_inserted;
 
                 return_status = this.customer_service.Update(customer);
                 if (!return_status.success)
@@ -152,7 +152,7 @@ namespace WebApplication.Services
             }
 
             // Insere o usuário.
-            if (!this.user_repository.Insert(user))
+            if (this.user_repository.Insert(user) == 0)
             {
                 return_status.message = "Erro ao adicionar usuário.";
                 return return_status;

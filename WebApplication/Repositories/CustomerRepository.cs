@@ -26,7 +26,7 @@ namespace WebApplication.Repositories
         /// <summary>
         /// Método retorna um cliente por usuário.
         /// </summary>
-        /// <param name="id">Identificador do usuário</param>
+        /// <param name="user_id">Identificador do usuário</param>
         /// <returns>Objeto</returns>
         Customer GetCustomerByUserId(int user_id);
 
@@ -55,6 +55,15 @@ namespace WebApplication.Repositories
 
     public class CustomerRepository : ICustomerRepository
     {
+        private ICustomerAddressRepository customer_address_repository;
+        private IUserRepository user_repository;
+
+        public CustomerRepository()
+        {
+            this.customer_address_repository = new CustomerAddressRepository();
+            this.user_repository = new UserRepository();
+        }
+
         /// <summary>
         /// Método retorna uma lista de clientes.
         /// </summary>
@@ -88,12 +97,10 @@ namespace WebApplication.Repositories
                 {
                     if (customer.user_id.HasValue)
                     {
-                        UserRepository user_serivce = new UserRepository();
-                        customer.User = user_serivce.GetUser(customer.user_id.Value);
-                    }                    
+                        customer.User = this.user_repository.GetUser(customer.user_id.Value);
+                    }
 
-                    CustomerAddressRepository customer_address_repository = new CustomerAddressRepository();
-                    customer.CustomerAddress = customer_address_repository.GetCustomerAddresses(customer.id);
+                    customer.CustomerAddress = this.customer_address_repository.GetCustomerAddresses(customer.id);
                 }
             }
 
@@ -117,12 +124,10 @@ namespace WebApplication.Repositories
                 {
                     if (customer.user_id.HasValue)
                     {
-                        UserRepository user_serivce = new UserRepository();
-                        customer.User = user_serivce.GetUser(customer.user_id.Value);
+                        customer.User = this.user_repository.GetUser(customer.user_id.Value);
                     }
 
-                    CustomerAddressRepository customer_address_repository = new CustomerAddressRepository();
-                    customer.CustomerAddress = customer_address_repository.GetCustomerAddresses(customer.id);
+                    customer.CustomerAddress = this.customer_address_repository.GetCustomerAddresses(customer.id);
                 }
             }
 

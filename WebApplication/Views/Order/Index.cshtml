@@ -1,0 +1,55 @@
+﻿@model IList<WebApplication.Models.Order>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Pedidos";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div>
+            <div class="pull-right">
+            </div>
+            <h3 class="bars">Pedidos</h3>
+            <hr />
+        </div>
+        <div>
+            <table class="table table-striped table-bordered datatable" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>#</th>                                              
+                        <th>Cliente</th>
+                        <th>Status</th>
+                        <th></th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <b>@Html.DisplayFor(modelItem => item.id)</b>
+                            </td>                            
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CustomerAddress.Customer.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastOrderLog.OrderStatus.description)
+                            </td>
+                            <td>                            
+                                <a href="@Url.Action("Details", "Order", new { id = item.id })" class="btn btn-default" title="Visualizar pedido"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>                            
+                            </td>
+                        </tr>
+                    }
+
+                    @if (Model.Count() == 0)
+                    {
+                        <tr>
+                            <td colspan="5">Nenhum pedido encontrado.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -44,6 +44,24 @@ namespace WebApplication
             );
 
             routes.MapRoute(
+                name: "OrderCreate",
+                url: "Order/Create/{customer_id}",
+                defaults: new { controller = "Order", action = "Create" }
+            );
+
+            routes.MapRoute(
+                name: "OrderPizzaCreate",
+                url: "OrderPizza/Create/{order_id}",
+                defaults: new { controller = "OrderPizza", action = "Create" }
+            );
+
+            routes.MapRoute(
+                name: "OrderPizzaEdit",
+                url: "OrderPizza/Edit/{order_id}",
+                defaults: new { controller = "OrderPizza", action = "Edit" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

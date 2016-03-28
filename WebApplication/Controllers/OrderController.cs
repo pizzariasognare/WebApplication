@@ -47,7 +47,7 @@ namespace WebApplication.Controllers
             if (order != null)
             {
                 // Redirecionado para o detalhamento do pedido.
-                if (order.LastOrderLog.order_status_id == Models.OrderStatus.ABRINDO)
+                if ((order.LastOrderLog.order_status_id == Models.OrderStatus.ABRINDO) && (order.order_date == DateTime.Today))
                 {
                     return RedirectToAction("Details", "Order", new { id = order.id });
                 }
@@ -62,7 +62,7 @@ namespace WebApplication.Controllers
 
             return RedirectToAction("Index");
         }
-
+        
         [HttpGet]
         public ActionResult Details(int id)
         {
@@ -84,6 +84,11 @@ namespace WebApplication.Controllers
             if (order == null)
             {
                 return HttpNotFound("Pedido não encontrado.");
+            }
+
+            if (order.LastOrderLog.OrderStatus.id != Models.OrderStatus.ABRINDO)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "O pedido já passou do status abrindo.");
             }
 
             ViewBag.payment_type_id = new SelectList
@@ -141,6 +146,12 @@ namespace WebApplication.Controllers
             ModelState.AddModelError("", return_status.message);
 
             return View(order);
+        }
+
+        [AllowAnonymous]
+        public ActionResult DetailsPDF(int id)
+        {
+            return new Rotativa.ActionAsPdf("Details", new { id = id }) { FileName = String.Format("Pedido{0}.pdf", id) };
         }
     }
 }

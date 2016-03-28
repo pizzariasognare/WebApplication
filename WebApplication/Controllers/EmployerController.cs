@@ -12,6 +12,7 @@ using WebApplication.Services;
 
 namespace WebApplication.Controllers
 {
+    [AllowAnonymous]
     public class EmployerController : AppController
     {
         private IEmployerService employer_service;

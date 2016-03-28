@@ -56,6 +56,7 @@ namespace WebApplication.Repositories
         private IPaymentTypeRepository payment_type_repository;
         private IOrderLogRepository order_log_repository;
         private IOrderPizzaRepository order_pizza_repository;
+        private IOrderDrinkRepository order_drink_repository;
 
         public OrderRepository()
         {
@@ -63,6 +64,7 @@ namespace WebApplication.Repositories
             this.payment_type_repository = new PaymentTypeRepository();
             this.order_log_repository = new OrderLogRepository();
             this.order_pizza_repository = new OrderPizzaRepository();
+            this.order_drink_repository = new OrderDrinkRepository();
         }
 
         /// <summary>
@@ -150,6 +152,8 @@ namespace WebApplication.Repositories
                     order.LastOrderLog = this.order_log_repository.GetLastOrderLog(order.id);
 
                     order.OrderPizza = this.order_pizza_repository.GetOrderPizzas(order.id);
+
+                    order.OrderDrink = this.order_drink_repository.GetOrderDrinks(order.id);
                 }
             }
 
@@ -179,6 +183,8 @@ namespace WebApplication.Repositories
                     order.LastOrderLog = this.order_log_repository.GetLastOrderLog(order.id);
 
                     order.OrderPizza = this.order_pizza_repository.GetOrderPizzas(order.id);
+
+                    order.OrderDrink = this.order_drink_repository.GetOrderDrinks(order.id);
                 }
             }
 

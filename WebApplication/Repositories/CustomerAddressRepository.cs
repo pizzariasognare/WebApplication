@@ -157,7 +157,7 @@ namespace WebApplication.Repositories
 
             using (Entities entities = new Entities())
             {
-                customer_address = entities.CustomerAddress.Where(c => c.customer_id == customer_id).OrderByDescending(c => c.id).FirstOrDefault();
+                customer_address = entities.CustomerAddress.Where(c => c.customer_id == customer_id && c.enabled == 1).OrderByDescending(c => c.id).FirstOrDefault();
 
                 if (customer_address != null)
                 {

@@ -18,9 +18,7 @@ namespace WebApplication.Models
         public int order_id { get; set; }
 
         [Required(ErrorMessage = "A bebida é obrigatório.")]
-        public int drink_id { get; set; }
-
-        public int amount { get; set; }
+        public int drink_id { get; set; }        
 
         public Drink Drink;
     }

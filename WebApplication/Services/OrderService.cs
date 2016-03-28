@@ -44,9 +44,9 @@ namespace WebApplication.Services
         ReturnStatus Insert(int customer_id, AppUser current_user);
 
         /// <summary>
-        /// Método atualiza um pedido.
+        /// Método atualiza  um pedido.
         /// </summary>
-        /// <param name="order">Objeto pedido</param>
+        /// <param name="order">Objeto pedido</param>        
         /// <returns>Objeto</returns>
         ReturnStatus Update(Order order);
     }
@@ -154,7 +154,7 @@ namespace WebApplication.Services
         /// <summary>
         /// Método atualiza um pedido.
         /// </summary>
-        /// <param name="order">Objeto cliente</param>
+        /// <param name="order">Objeto pedido</param>
         /// <returns>Objeto</returns>
         public ReturnStatus Update(Order order)
         {

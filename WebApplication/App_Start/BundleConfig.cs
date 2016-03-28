@@ -31,9 +31,15 @@ namespace WebApplication
             bundles.Add(new StyleBundle("~/Content/datatable").Include(
                       "~/Content/dataTables.bootstrap.min.css"));
 
+            bundles.Add(new StyleBundle("~/Content/select2").Include(
+                      "~/Content/select2.min.css"));
+
             bundles.Add(new ScriptBundle("~/bundles/datatable").Include(
                       "~/Scripts/jquery.dataTables.min.js",
                       "~/Scripts/dataTables.bootstrap.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/select2").Include(
+                      "~/Scripts/select2.min.js"));
         }
     }
 }

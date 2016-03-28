@@ -37,7 +37,8 @@
                                 @Html.DisplayFor(modelItem => item.phone)
                             </td>
                             <td>
-                                <a href="@Url.Action("Details", "Customer", new { id = item.id })" class="btn btn-default" title="Visualizar cliente"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
+                                <a href="@Url.Action("Details", "Customer", new { id = item.id })" class="btn-sm btn-default" title="Visualizar cliente"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>&nbsp;&nbsp;
+                                <a href="@Url.Action("Create", "Order", new { id = item.id })" class="btn-sm btn-primary" title="Adicionar pedido"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
                             </td>
                         </tr>
                     }

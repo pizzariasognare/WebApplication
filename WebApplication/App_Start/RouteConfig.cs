@@ -62,6 +62,18 @@ namespace WebApplication
             );
 
             routes.MapRoute(
+                name: "OrderDrinkCreate",
+                url: "OrderDrink/Create/{order_id}",
+                defaults: new { controller = "OrderDrink", action = "Create" }
+            );
+
+            routes.MapRoute(
+                name: "OrderDrinkEdit",
+                url: "OrderDrink/Edit/{order_id}",
+                defaults: new { controller = "OrderDrink", action = "Edit" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

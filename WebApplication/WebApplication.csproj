@@ -73,6 +73,9 @@
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
+    <Reference Include="Rotativa">
+      <HintPath>..\packages\Rotativa.1.6.4\lib\net40\Rotativa.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -146,7 +149,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Database\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -186,6 +188,7 @@
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CustomerAddressController.cs" />
+    <Compile Include="Controllers\OrderDrinkController.cs" />
     <Compile Include="Controllers\OrderPizzaController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\EmployerController.cs" />
@@ -241,6 +244,7 @@
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\ProfileRepository.cs" />
     <Compile Include="Services\CustomerAddressService.cs" />
+    <Compile Include="Services\OrderDrinkService.cs" />
     <Compile Include="Services\OrderPizzaService.cs" />
     <Compile Include="Services\OrderLogService.cs" />
     <Compile Include="Services\OrderService.cs" />
@@ -260,7 +264,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\chocolat.css" />
+    <Content Include="Content\select2.min.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Database\database_create.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -279,6 +285,7 @@
     <Content Include="Images\left.png" />
     <Content Include="Images\right.png" />
     <Content Include="Images\update.png" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -301,6 +308,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Content\dataTables.bootstrap.min.css" />
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Employer\Edit.js" />
     <Content Include="Scripts\Employer\EditUser.js" />
@@ -318,6 +326,7 @@
     <Content Include="Scripts\Order\Edit.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\Shared\Layout.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -357,7 +366,7 @@
     <Content Include="Views\Order\Edit.cshtml" />
     <Content Include="Views\Order\Details.cshtml" />
     <Content Include="Views\OrderPizza\Create.cshtml" />
-    <Content Include="Views\OrderPizza\Edit.cshtml" />
+    <Content Include="Views\OrderDrink\Create.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

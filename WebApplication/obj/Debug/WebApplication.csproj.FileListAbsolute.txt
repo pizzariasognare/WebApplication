@@ -14,6 +14,7 @@ C:\Projetos\Sognare\WebApplication\WebApplication\bin\MySql.Data.Entity.EF5.dll
 C:\Projetos\Sognare\WebApplication\WebApplication\bin\MySql.Data.Entity.EF6.dll
 C:\Projetos\Sognare\WebApplication\WebApplication\bin\Newtonsoft.Json.dll
 C:\Projetos\Sognare\WebApplication\WebApplication\bin\Owin.dll
+C:\Projetos\Sognare\WebApplication\WebApplication\bin\Rotativa.dll
 C:\Projetos\Sognare\WebApplication\WebApplication\bin\System.Net.Http.Formatting.dll
 C:\Projetos\Sognare\WebApplication\WebApplication\bin\System.Web.Helpers.dll
 C:\Projetos\Sognare\WebApplication\WebApplication\bin\System.Web.Http.dll

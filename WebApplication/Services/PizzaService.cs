@@ -14,6 +14,13 @@ namespace WebApplication.Services
         /// </summary>
         /// <returns>Lista de pizzas.</returns>
         List<Pizza> GetPizzas();
+
+        /// <summary>
+        /// Método retorna uma pizza.
+        /// </summary>
+        /// <param name="id">Identificador da pizza.</param>
+        /// <returns>Objeto</returns>
+        Pizza GetPizza(int id);
     }
 
     public class PizzaService : IPizzaService
@@ -32,6 +39,16 @@ namespace WebApplication.Services
         public List<Pizza> GetPizzas()
         {
             return this.pizza_repository.GetPizzas();
+        }
+
+        /// <summary>
+        /// Método retorna uma pizza.
+        /// </summary>
+        /// <param name="id">Identificador da pizza.</param>
+        /// <returns>Objeto</returns>
+        public Pizza GetPizza(int id)
+        {
+            return this.GetPizza(id);
         }
     }
 }

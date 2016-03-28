@@ -231,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`Order` (
   `price` DECIMAL(15,2) NOT NULL DEFAULT 0.00 COMMENT '',
   `discount` DECIMAL(15,2) NOT NULL DEFAULT 0.00 COMMENT '',
   `final_price` DECIMAL(15,2) NOT NULL DEFAULT 0.00 COMMENT '',
-  `change_for` DECIMAL(15,2) NOT NULL DEFAULT 0.00 COMMENT '',
+  `payment` DECIMAL(15,2) NOT NULL DEFAULT 0.00 COMMENT '',
   `change` DECIMAL(15,2) NOT NULL DEFAULT 0.00 COMMENT '',
   `delivery_price` DECIMAL(15,2) NOT NULL DEFAULT 0.00 COMMENT '',  
   `note` VARCHAR(255) NULL COMMENT '',
@@ -255,13 +255,12 @@ ENGINE = InnoDB;
 -- Table `pizzariasognare.com.br`.`OrderPizza`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`OrderPizza` (
-  `id` INT UNSIGNED NOT NULL COMMENT '',
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '',
   `order_id` INT UNSIGNED NOT NULL COMMENT '',
-  `pizza_id` INT UNSIGNED ZEROFILL NOT NULL COMMENT '',
-  `amount` INT UNSIGNED NOT NULL DEFAULT 1 COMMENT '',
+  `pizza_id` INT UNSIGNED NOT NULL COMMENT '',
   PRIMARY KEY (`id`)  COMMENT '',
   INDEX `pizza_id_FK` (`pizza_id` ASC)  COMMENT '',
-  INDEX `order_id_FK` (`order_id` ASC)  COMMENT '',
+  INDEX `order_id_FK` (`order_id` ASC)  COMMENT '', 
   CONSTRAINT `OrderPizza_Order_FK`
     FOREIGN KEY (`order_id`)
     REFERENCES `pizzariasognare.com.br`.`Order` (`id`)
@@ -279,10 +278,9 @@ ENGINE = InnoDB;
 -- Table `pizzariasognare.com.br`.`OrderDrink`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`OrderDrink` (
-  `id` INT UNSIGNED NOT NULL COMMENT '',
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '',
   `order_id` INT UNSIGNED NOT NULL COMMENT '',
-  `drink_id` INT UNSIGNED NOT NULL COMMENT '',
-  `amount` INT UNSIGNED NOT NULL DEFAULT 1 COMMENT '',
+  `drink_id` INT UNSIGNED NOT NULL COMMENT '',  
   PRIMARY KEY (`id`)  COMMENT '',
   INDEX `drink_id_FK` (`drink_id` ASC)  COMMENT '',
   INDEX `order_id_FK` (`order_id` ASC)  COMMENT '',
@@ -410,10 +408,9 @@ ENGINE = InnoDB;
 -- Table `pizzariasognare.com.br`.`OrderCake`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`OrderCake` (
-  `id` INT UNSIGNED NOT NULL COMMENT '',
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '',
   `order_id` INT UNSIGNED NOT NULL COMMENT '',
   `cake_id` INT UNSIGNED NOT NULL COMMENT '',
-  `amount` INT UNSIGNED NOT NULL DEFAULT 1 COMMENT '',
   PRIMARY KEY (`id`)  COMMENT '',
   INDEX `cake_id_FK` (`cake_id` ASC)  COMMENT '',
   INDEX `order_id_FK` (`order_id` ASC)  COMMENT '',

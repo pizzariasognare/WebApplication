@@ -1,0 +1,44 @@
+﻿@model WebApplication.Models.OrderDrink
+
+@{
+    ViewBag.Title = "Adicionar Bebida";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div>
+            <div class="pull-right">
+                <a href="@Url.Action("Details", "Order", new { id = ViewBag.Order.id })" class="btn btn-default" title="Voltar ao pedido pedido"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></a>
+            </div>
+            <h3 class="bars">Adicionar Bebida</h3>
+            <h4>Pedido: @ViewBag.Order.id</h4>
+            <h4>Cliente: @ViewBag.Order.CustomerAddress.Customer.name</h4>
+            <hr />
+        </div>
+        <div>
+            @using (Html.BeginForm())
+            {
+                <div class="form-horizontal">
+                    @Html.HiddenFor(model => model.order_id)                    
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.drink_id, "Bebida", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.DropDownList("Drink_id", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.drink_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group pull-right">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" class="btn btn-primary" title="Salvar">
+                                <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                </div>
+            }
+        </div>
+    </div>
+</div>

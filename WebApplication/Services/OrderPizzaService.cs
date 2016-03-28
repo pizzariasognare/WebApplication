@@ -17,11 +17,18 @@ namespace WebApplication.Services
         ReturnStatus Insert(OrderPizza order_pizza);
 
         /// <summary>
-        /// Método atualiza uma pizza do pedido.
+        /// Método Remove uma pizza do pedido.
         /// </summary>
         /// <param name="order_pizza">Objeto de pizza do pedido</param>
         /// <returns>Objeto</returns>
-        ReturnStatus Update(OrderPizza order_pizza);
+        ReturnStatus Delete(OrderPizza order_pizza);
+
+        /// <summary>
+        /// Método retorna uma pizza do pedido.
+        /// </summary>
+        /// <param name="order_id">Identificador da pizza no pedido.</param>
+        /// <returns>Objeto</returns>
+        OrderPizza GetOrderPizza(int order_pizza_id);
     }
 
     public class OrderPizzaService : IOrderPizzaService
@@ -41,15 +48,15 @@ namespace WebApplication.Services
         public ReturnStatus Insert(OrderPizza order_pizza)
         {
             ReturnStatus return_status = new ReturnStatus();
-
+            
             if (!this.order_pizza_repository.Insert(order_pizza))
             {
-                return_status.message = "Erro ao adicionar pizza do pedido.";
+                return_status.message = "Erro ao adicionar pizza ao pedido.";
                 return return_status;
-            }
-
+            }            
+            
             return_status.success = true;
-            return_status.message = "pizza do pedido adicionado com sucesso.";
+            return_status.message = "Adicionado pizzao ao pedido com sucesso.";
             return return_status;
         }
 
@@ -58,19 +65,29 @@ namespace WebApplication.Services
         /// </summary>
         /// <param name="order_pizza">Objeto de pizza do pedido</param>
         /// <returns>Objeto</returns>
-        public ReturnStatus Update(OrderPizza order_pizza)
+        public ReturnStatus Delete(OrderPizza order_pizza)
         {
             ReturnStatus return_status = new ReturnStatus();
 
-            if (!this.order_pizza_repository.Update(order_pizza))
+            if (!this.order_pizza_repository.Delete(order_pizza))
             {
-                return_status.message = "Erro ao adicionar pizza do pedido.";
+                return_status.message = "Erro ao remover pizza do pedido.";
                 return return_status;
             }
 
             return_status.success = true;
-            return_status.message = "pizza do pedido adicionado com sucesso.";
+            return_status.message = "pizza do pedido removido com sucesso.";
             return return_status;
+        }
+
+        /// <summary>
+        /// Método retorna uma pizza do pedido.
+        /// </summary>
+        /// <param name="order_id">Identificador da pizza no pedido.</param>
+        /// <returns>Objeto</returns>
+        public OrderPizza GetOrderPizza(int order_pizza_id)
+        {
+            return this.order_pizza_repository.GetOrderPizza(order_pizza_id);
         }
     }
 }

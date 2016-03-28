@@ -14,15 +14,15 @@ namespace WebApplication.Repositories
         /// Método insere uma pizza no pedido.
         /// </summary>
         /// <param name="order_pizza">Objeto</param>
-        /// <returns>Status da inserção (Verdade ou falso)</returns>
+        /// <returns>Status da inserção./returns>
         bool Insert(OrderPizza order_pizza);
 
         /// <summary>
-        /// Método atualiza uma pizza no pedido.
+        /// Método remove uma pizza no pedido.
         /// </summary>
-        /// <param name="order_pizza">Objeto</param>
-        /// <returns>Status da atualização (Verdade ou falso)</returns>
-        bool Update(OrderPizza order_pizza);
+        /// <param name="OrderPizza">Objeto</param>
+        /// <returns>Status da remoção (Verdade ou falso)</returns>
+        bool Delete(OrderPizza order_pizza);
 
         /// <summary>
         /// Método retorna uma lista de pizzas do pedido.
@@ -30,6 +30,13 @@ namespace WebApplication.Repositories
         /// <param name="order_id">Identificador do pedido.</param>
         /// <returns>Lista de pizzas do pedido.</returns>
         List<OrderPizza> GetOrderPizzas(int order_id);
+
+        /// <summary>
+        /// Método retorna uma pizza do pedido.
+        /// </summary>
+        /// <param name="order_id">Identificador da pizza no pedido.</param>
+        /// <returns>Objeto</returns>
+        OrderPizza GetOrderPizza(int order_pizza_id);
     }
 
     public class OrderPizzaRepository : IOrderPizzaRepository
@@ -42,16 +49,22 @@ namespace WebApplication.Repositories
         }
 
         /// <summary>
-        /// Método insere um endereço de um pizza no pedido.
+        /// Método insere uma pizza no pedido.
         /// </summary>
-        /// <param name="OrderPizza">Objeto</param>
-        /// <returns>Status da inserção (Verdade ou falso)</returns>
+        /// <param name="order_pizza">Objeto</param>
+        /// <returns>Status da inserção./returns>
         public bool Insert(OrderPizza order_pizza)
         {
             try
             {
                 using (Entities entities = new Entities())
                 {
+                    Pizza pizza = entities.Pizza.Where(p => p.id == order_pizza.pizza_id).FirstOrDefault();
+                    Order order = entities.Order.Where(o => o.id == order_pizza.order_id).FirstOrDefault();
+                    order.price += pizza.price;
+                    order.final_price += pizza.price;
+
+                    entities.Entry(order).State = EntityState.Modified;
                     entities.OrderPizza.Add(order_pizza);
                     entities.SaveChanges();
                 }
@@ -65,17 +78,23 @@ namespace WebApplication.Repositories
         }
 
         /// <summary>
-        /// Método atualiza uma pizza no pedido.
+        /// Método remove uma pizza no pedido.
         /// </summary>
         /// <param name="OrderPizza">Objeto</param>
-        /// <returns>Status da atualização (Verdade ou falso)</returns>
-        public bool Update(OrderPizza order_pizza)
+        /// <returns>Status da remoção (Verdade ou falso)</returns>
+        public bool Delete(OrderPizza order_pizza)
         {
             try
             {
                 using (Entities entities = new Entities())
                 {
-                    entities.Entry(order_pizza).State = EntityState.Modified;
+                    Pizza pizza = entities.Pizza.Where(p => p.id == order_pizza.pizza_id).FirstOrDefault();
+                    Order order = entities.Order.Where(o => o.id == order_pizza.order_id).FirstOrDefault();
+                    order.price -= pizza.price;
+                    order.final_price -= pizza.price;
+
+                    entities.Entry(order).State = EntityState.Modified;
+                    entities.Entry(order_pizza).State = EntityState.Deleted;
                     entities.SaveChanges();
                 }
 
@@ -94,6 +113,7 @@ namespace WebApplication.Repositories
         /// <returns>Lista de pizzas do pedido.</returns>
         public List<OrderPizza> GetOrderPizzas(int order_id)
         {
+
             List<OrderPizza> order_pizzas = new List<OrderPizza>();
 
             using (Entities entities = new Entities())
@@ -108,6 +128,23 @@ namespace WebApplication.Repositories
             }
 
             return order_pizzas;
+        }
+
+        /// <summary>
+        /// Método retorna uma pizza do pedido.
+        /// </summary>
+        /// <param name="order_id">Identificador da pizza no pedido.</param>
+        /// <returns>Objeto</returns>
+        public OrderPizza GetOrderPizza(int order_pizza_id)
+        {
+            OrderPizza order_pizza = new OrderPizza();
+
+            using (Entities entities = new Entities())
+            {
+                order_pizza = entities.OrderPizza.Where(op => op.id == order_pizza_id).FirstOrDefault();
+            }
+
+            return order_pizza;
         }
     }
 }

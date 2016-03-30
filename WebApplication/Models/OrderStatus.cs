@@ -16,9 +16,9 @@ namespace WebApplication.Models
         public const int EM_PRODUCAO = 3;
         public const int PRONTO = 4;
         public const int EM_ENTREGA = 5;
-        public const int ENTREGUE = 6;
-        public const int CANCELADO = 7;
-        public const int FECHADO = 8;
+        public const int ENTREGUE = 6;        
+        public const int FECHADO = 7;
+        public const int CANCELADO = 8;
 
         [Key]
         [Column("id")]

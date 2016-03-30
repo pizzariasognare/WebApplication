@@ -188,6 +188,7 @@
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CustomerAddressController.cs" />
+    <Compile Include="Controllers\OrderLogController.cs" />
     <Compile Include="Controllers\OrderDrinkController.cs" />
     <Compile Include="Controllers\OrderPizzaController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
@@ -244,6 +245,7 @@
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\ProfileRepository.cs" />
     <Compile Include="Services\CustomerAddressService.cs" />
+    <Compile Include="Services\OrderStatusService.cs" />
     <Compile Include="Services\OrderDrinkService.cs" />
     <Compile Include="Services\OrderPizzaService.cs" />
     <Compile Include="Services\OrderLogService.cs" />
@@ -321,8 +323,10 @@
     <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="Scripts\jquery.chocolat.js" />
     <Content Include="Scripts\jquery.dataTables.min.js" />
+    <Content Include="Scripts\jquery.printElement.min.js" />
     <Content Include="Scripts\jquery.wmuSlider.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Order\Details.js" />
     <Content Include="Scripts\Order\Edit.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -367,6 +371,7 @@
     <Content Include="Views\Order\Details.cshtml" />
     <Content Include="Views\OrderPizza\Create.cshtml" />
     <Content Include="Views\OrderDrink\Create.cshtml" />
+    <Content Include="Views\OrderLog\Create.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

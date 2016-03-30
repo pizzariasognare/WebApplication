@@ -16,13 +16,11 @@ namespace WebApplication.Controllers
     {
         private IOrderService order_service;
         private IPaymentTypeService payment_type_service;
-        private IPizzaSizeService pizza_size_service;
 
         public OrderController()
         {
             this.order_service = new OrderService(new OrderRepository());
             this.payment_type_service = new PaymentTypeService(new PaymentTypeRepository());
-            this.pizza_size_service = new PizzaSizeService(new PizzaSizeRepository());
         }
 
         public OrderController(IOrderService order_service)
@@ -60,9 +58,9 @@ namespace WebApplication.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, return_status.message);
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Order", new { id = return_status.meta.First() });
         }
-        
+
         [HttpGet]
         public ActionResult Details(int id)
         {
@@ -72,6 +70,8 @@ namespace WebApplication.Controllers
             {
                 return HttpNotFound("Pedido não encontrado.");
             }
+
+            ViewBag.Modify = ((order.LastOrderLog.OrderStatus.id == Models.OrderStatus.ABRINDO) ? true : false);
 
             return View(order);
         }
@@ -99,12 +99,12 @@ namespace WebApplication.Controllers
                     Convert.ToString(order.payment_type_id)
                 );
 
-            ViewBag.pizza_id = new SelectList
-                (
-                    this.pizza_size_service.GetPizzaSizes(),
-                    "id",
-                    "PizzaFlavor.name"
-                );
+            List<SelectListItem> customer_address_items = new List<SelectListItem>();
+            foreach (var customer_address in order.CustomerAddress.Customer.CustomerAddress)
+            {
+                customer_address_items.Add(new SelectListItem { Value = Convert.ToString(customer_address.id), Text = String.Format("{0}, {1}, {2}, {3}", customer_address.address, customer_address.number, customer_address.complement, customer_address.neighborhood), Selected = ((order.customer_address_id == customer_address.id) ? true : false) });
+            }
+            ViewBag.customer_address_id = customer_address_items;
 
             return View(order);
         }
@@ -118,13 +118,6 @@ namespace WebApplication.Controllers
                     "id",
                     "name",
                     payment_type_id
-                );
-
-            ViewBag.pizza_size_id = new SelectList
-                (
-                    this.pizza_size_service.GetPizzaSizes(),
-                    "id",
-                    "name"
                 );
 
             if (!ModelState.IsValid)
@@ -146,12 +139,6 @@ namespace WebApplication.Controllers
             ModelState.AddModelError("", return_status.message);
 
             return View(order);
-        }
-
-        [AllowAnonymous]
-        public ActionResult DetailsPDF(int id)
-        {
-            return new Rotativa.ActionAsPdf("Details", new { id = id }) { FileName = String.Format("Pedido{0}.pdf", id) };
         }
     }
 }

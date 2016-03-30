@@ -21,6 +21,13 @@ namespace WebApplication.Repositories
         /// <param name="id">Identificador do status de pedido.</param>
         /// <returns>Objeto</returns>
         OrderStatus GetOrderStatus(int id);
+
+        /// <summary>
+        /// Método retorna uma lista de status do pedido.
+        /// </summary>
+        /// <param name="order_id">Identificador do último status do pedido.</param>
+        /// <returns>Objeto</returns>
+        List<OrderStatus> GetNextOrderStatus(int last_order_status_id);
     }
 
     public class OrderStatusRepository : IOrderStatusRepository
@@ -53,6 +60,23 @@ namespace WebApplication.Repositories
             using (Entities entities = new Entities())
             {
                 order_status = entities.OrderStatus.Where(p => p.id == id).FirstOrDefault();
+            }
+
+            return order_status;
+        }
+
+        /// <summary>
+        /// Método retorna uma lista de status do pedido.
+        /// </summary>
+        /// <param name="order_id">Identificador do último status do pedido.</param>
+        /// <returns>Objeto</returns>
+        public List<OrderStatus> GetNextOrderStatus(int last_order_status_id)
+        {
+            List<OrderStatus> order_status = new List<OrderStatus>();
+
+            using (Entities entities = new Entities())
+            {
+                order_status = entities.OrderStatus.Where(os => os.id >= last_order_status_id).OrderBy(os => os.id).ToList();
             }
 
             return order_status;

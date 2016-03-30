@@ -104,13 +104,15 @@ namespace WebApplication.Services
             }
 
             // Verifica se aconteceu alguma erro no cadastro do cliente.
-            if (!this.customer_repository.Insert(customer))
+            int customer_id_inserted = this.customer_repository.Insert(customer);
+            if (customer_id_inserted == 0)
             {
                 return_status.message = "Erro ao adicionar cliente.";
             }
 
             return_status.success = true;
             return_status.message = "Cliente adicionado com sucesso.";
+            return_status.meta.Add(Convert.ToString(customer_id_inserted));
             return return_status;
         }
 

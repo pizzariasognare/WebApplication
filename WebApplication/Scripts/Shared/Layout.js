@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $('.datatable').DataTable({        
+    $('.datatable').DataTable({
         bLengthChange: false,
         language: {
             "sEmptyTable": "Nenhum registro encontrado",

@@ -74,6 +74,12 @@ namespace WebApplication
             );
 
             routes.MapRoute(
+                name: "OrderLogCreate",
+                url: "OrderLog/Create/{order_id}",
+                defaults: new { controller = "OrderLog", action = "Create" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

@@ -121,6 +121,7 @@ namespace WebApplication.Services
 
             Order order = new Order();
             order.customer_address_id = customer_address.id;
+            order.payment_type_id = Models.PaymentType.DINHEIRO;
             order.order_date = DateTime.Today;
             order.delivery_price = customer_address.ZipCode.delivery_price;
             order.final_price = customer_address.ZipCode.delivery_price;   
@@ -141,13 +142,14 @@ namespace WebApplication.Services
 
             // Insere o log do pedido
             return_status = this.order_log_service.Insert(order_log);
-            if (return_status.success)
+            if (!return_status.success)
             {
                 return return_status;
             }
 
             return_status.success = true;
             return_status.message = "Pedido adicionado com sucesso.";
+            return_status.meta.Add(Convert.ToString(order_id_inserted));
             return return_status;
         }
 

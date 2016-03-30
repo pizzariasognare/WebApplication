@@ -321,7 +321,6 @@ CREATE TABLE IF NOT EXISTS `pizzariasognare.com.br`.`OrderLog` (
   PRIMARY KEY (`id`)  COMMENT '',
   INDEX `order_id_FK` (`order_id` ASC)  COMMENT '',
   INDEX `order_status_id_FK` (`order_status_id` ASC)  COMMENT '',
-  UNIQUE INDEX `order_id_order_status_id_UNIQUE` (`order_id` ASC, `order_status_id` ASC)  COMMENT '',
   INDEX `user_id_FK` (`user_id` ASC)  COMMENT '',
   CONSTRAINT `OrderLog_Order_FK`
     FOREIGN KEY (`order_id`)
@@ -478,8 +477,8 @@ INSERT INTO `pizzariasognare.com.br`.`OrderStatus` (`id`, `description`) VALUES 
 INSERT INTO `pizzariasognare.com.br`.`OrderStatus` (`id`, `description`) VALUES (4, 'Pronto');
 INSERT INTO `pizzariasognare.com.br`.`OrderStatus` (`id`, `description`) VALUES (5, 'Em entrega');
 INSERT INTO `pizzariasognare.com.br`.`OrderStatus` (`id`, `description`) VALUES (6, 'Entregue');
-INSERT INTO `pizzariasognare.com.br`.`OrderStatus` (`id`, `description`) VALUES (7, 'Cancelado');
-INSERT INTO `pizzariasognare.com.br`.`OrderStatus` (`id`, `description`) VALUES (8, 'Fechado');
+INSERT INTO `pizzariasognare.com.br`.`OrderStatus` (`id`, `description`) VALUES (7, 'Fechado');
+INSERT INTO `pizzariasognare.com.br`.`OrderStatus` (`id`, `description`) VALUES (8, 'Cancelado');
 
 COMMIT;
 

@@ -52,7 +52,7 @@ namespace WebApplication.Controllers
             ReturnStatus return_status = this.customer_service.Insert(customer);
             if (return_status.success)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Customer", new { id = return_status.meta.First() });
             }
 
             ModelState.AddModelError("", return_status.message);

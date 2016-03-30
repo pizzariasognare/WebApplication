@@ -43,7 +43,7 @@ namespace WebApplication.Repositories
         /// </summary>
         /// <param name="customer">Objeto cliente</param>
         /// <returns>Status da inserção (Verdade ou falso)</returns>
-        bool Insert(Customer customer);
+        int Insert(Customer customer);
 
         /// <summary>
         /// Método atualiza um cliente.
@@ -158,24 +158,28 @@ namespace WebApplication.Repositories
         /// <summary>
         /// Método insere um cliente.
         /// </summary>
+        /// <param name="customer">Objeto cliente</param>
         /// <returns>Status da inserção (Verdade ou falso)</returns>
-        public bool Insert(Customer customer)
+        public int Insert(Customer customer)
         {
             try
             {
+                int id = 0;
+
                 customer.enabled = 1;
 
                 using (Entities entities = new Entities())
                 {
                     entities.Customer.Add(customer);
                     entities.SaveChanges();
+                    id = customer.id;
                 }
 
-                return true;
+                return id;
             }
             catch (Exception)
             {
-                return false;
+                return 0;
             }
         }
 

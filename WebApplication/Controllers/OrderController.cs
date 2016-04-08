@@ -31,7 +31,7 @@ namespace WebApplication.Controllers
 
         [HttpGet]
         public ActionResult Index()
-        {
+        {            
             return View(this.order_service.GetOrdersToday());
         }
 
@@ -139,6 +139,12 @@ namespace WebApplication.Controllers
             ModelState.AddModelError("", return_status.message);
 
             return View(order);
+        }
+
+        [HttpGet]
+        public ActionResult DeliveredToday()
+        {
+            return View(this.order_service.GetTotalOrdersDeliveredToday());
         }
     }
 }

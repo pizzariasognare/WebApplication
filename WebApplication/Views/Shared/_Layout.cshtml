@@ -43,10 +43,30 @@
                             <div class="collapse navbar-collapse nav-wil" id="main-menu">
                                 <nav class="stroke">
                                     <ul class="nav navbar-nav">
-                                        <li><a href="@Url.Action("Index", "Customer")" class="hvr-underline-from-left"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;Clientes</a></li>
-                                        <li><a href="@Url.Action("Index", "Employer")" class="hvr-underline-from-left"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;Funcionários</a></li>
-                                        <li><a href="@Url.Action("Index", "Order")" class="hvr-underline-from-left"><span class="glyphicon glyphicon-barcode" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;Pedidos</a></li>                                        
-                                        <li><a href="@Url.Action("Logout", "Auth")" class="hvr-underline-from-left"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;Sair</a></li>
+                                        <li>
+                                            <a href="@Url.Action("Index", "PizzaFlavor")" class="hvr-underline-from-left"><span class="glyphicon glyphicon-th" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;Pizzas</a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Index", "Drink")" class="hvr-underline-from-left"><span class="glyphicon glyphicon-glass" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;Bebidas</a>
+                                        </li>
+                                        <li style="@((User.Identity.IsAuthenticated) ? "" : "display:none")">
+                                            <a href="@Url.Action("Index", "Customer")" class="hvr-underline-from-left"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;Clientes</a>
+                                        </li>
+                                        <li style="@((User.Identity.IsAuthenticated) ? "" : "display:none")">
+                                            <a href="@Url.Action("Index", "Employer")" class="hvr-underline-from-left"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;Funcionários</a>
+                                        </li>
+                                        <li style="@((User.Identity.IsAuthenticated) ? "" : "display:none")">
+                                            <a href="@Url.Action("Index", "Order")" class="hvr-underline-from-left"><span class="glyphicon glyphicon-barcode" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;Pedidos</a>
+                                        </li>
+                                        <li style="@((User.Identity.IsAuthenticated) ? "" : "display:none")">
+                                            <a href="@Url.Action("DeliveredToday", "Order")" class="hvr-underline-from-left"><span class="glyphicon glyphicon-th" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;Entregas</a>
+                                        </li>
+                                        <li style="@((User.Identity.IsAuthenticated) ? "" : "display:none")">
+                                            <a href="@Url.Action("Logout", "Auth")" class="hvr-underline-from-left"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;Sair</a>
+                                        </li>
+                                        <li style="@((!User.Identity.IsAuthenticated) ? "" : "display:none")">                                         
+                                            <a href="@Url.Action("Login", "Auth")" class="hvr-underline-from-left"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;Login</a>
+                                        </li>
                                     </ul>
                                 </nav>
                             </div>

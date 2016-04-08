@@ -48,6 +48,13 @@ namespace WebApplication.Repositories
         /// <param name="order">Objeto</param>
         /// <returns>Status da atualização (Verdade ou falso)</returns>
         bool Update(Order order);
+
+        /// <summary>
+        /// Método retorna o total de pedidos entregues por funciónário.
+        /// </summary>
+        /// <param name="id">Identificador do cliente</param>
+        /// <returns>Lista de total de pedidos</returns>
+        List<TotalOrdersDeliveredToday> GetTotalOrdersDeliveredToday();
     }
 
     public class OrderRepository : IOrderRepository
@@ -106,8 +113,10 @@ namespace WebApplication.Repositories
             List<Order> orders = new List<Order>();
 
             using (Entities entities = new Entities())
-            {
-                List<Order> _orders = entities.Order.Where(o => o.order_date == DateTime.Today).OrderByDescending(o => o.id).ToList();
+            {                
+                var today = (DateTime.Now.AddHours(-2)).Date;
+
+                List<Order> _orders = entities.Order.Where(o => o.order_date == today).OrderByDescending(o => o.id).ToList();
 
                 foreach (var order in _orders)
                 {
@@ -240,6 +249,23 @@ namespace WebApplication.Repositories
             {
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Método retorna o total de pedidos entregues por funciónário.
+        /// </summary>
+        /// <param name="id">Identificador do cliente</param>
+        /// <returns>Lista de total de pedidos</returns>
+        public List<TotalOrdersDeliveredToday> GetTotalOrdersDeliveredToday()
+        {
+            List<TotalOrdersDeliveredToday> list = new List<TotalOrdersDeliveredToday>();
+
+            using (Entities entities = new Entities())
+            {
+                list = entities.Database.SqlQuery<TotalOrdersDeliveredToday>("CALL `GetTotalOrdersDeliveredToday`()").ToList();
+            }
+
+            return list;
         }
     }
 }

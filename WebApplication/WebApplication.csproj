@@ -203,6 +203,7 @@
     </Compile>
     <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\Drink.cs" />
+    <Compile Include="Models\DTO\TotalOrdersDeliveredToday.cs" />
     <Compile Include="Models\OrderLog.cs" />
     <Compile Include="Models\OrderDrink.cs" />
     <Compile Include="Models\PaymentType.cs" />
@@ -372,6 +373,7 @@
     <Content Include="Views\OrderPizza\Create.cshtml" />
     <Content Include="Views\OrderDrink\Create.cshtml" />
     <Content Include="Views\OrderLog\Create.cshtml" />
+    <Content Include="Views\Order\DeliveredToday.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

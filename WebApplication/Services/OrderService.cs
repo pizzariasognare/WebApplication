@@ -49,6 +49,13 @@ namespace WebApplication.Services
         /// <param name="order">Objeto pedido</param>        
         /// <returns>Objeto</returns>
         ReturnStatus Update(Order order);
+
+        /// <summary>
+        /// Método retorna o total de pedidos entregues por funciónário.
+        /// </summary>
+        /// <param name="id">Identificador do cliente</param>
+        /// <returns>Lista de total de pedidos</returns>
+        List<TotalOrdersDeliveredToday> GetTotalOrdersDeliveredToday();
     }
 
     public class OrderService : IOrderService
@@ -172,6 +179,16 @@ namespace WebApplication.Services
             return_status.success = true;
             return_status.message = "Pedido atualizado com sucesso.";
             return return_status;
+        }
+
+        /// <summary>
+        /// Método retorna o total de pedidos entregues por funciónário.
+        /// </summary>
+        /// <param name="id">Identificador do cliente</param>
+        /// <returns>Lista de total de pedidos</returns>
+        public List<TotalOrdersDeliveredToday> GetTotalOrdersDeliveredToday()
+        {
+            return this.order_repository.GetTotalOrdersDeliveredToday();
         }
     }
 }

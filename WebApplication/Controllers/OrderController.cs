@@ -110,7 +110,7 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Order order, string payment_type_id)
+        public ActionResult Edit(Order order, string payment_type_id, string customer_address_id)
         {
             ViewBag.payment_type_id = new SelectList
                 (
@@ -120,6 +120,14 @@ namespace WebApplication.Controllers
                     payment_type_id
                 );
 
+            Order _order = this.order_service.GetOrder(order.id);
+            List<SelectListItem> customer_address_items = new List<SelectListItem>();
+            foreach (var customer_address in _order.CustomerAddress.Customer.CustomerAddress)
+            {
+                customer_address_items.Add(new SelectListItem { Value = Convert.ToString(customer_address.id), Text = String.Format("{0}, {1}, {2}, {3}", customer_address.address, customer_address.number, customer_address.complement, customer_address.neighborhood), Selected = ((order.customer_address_id == customer_address.id) ? true : false) });
+            }
+            ViewBag.customer_address_id = customer_address_items;
+
             if (!ModelState.IsValid)
             {
                 return View(order);
@@ -128,6 +136,11 @@ namespace WebApplication.Controllers
             if (payment_type_id != "")
             {
                 order.payment_type_id = Convert.ToInt32(payment_type_id);
+            }
+
+            if (customer_address_id != "")
+            {
+                order.customer_address_id = Convert.ToInt32(customer_address_id);
             }
 
             ReturnStatus return_status = this.order_service.Update(order);

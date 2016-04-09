@@ -56,6 +56,7 @@ namespace WebApplication.Controllers
             ViewBag.pizza_id = pizzas_items;
 
             OrderPizza order_pizza = new OrderPizza();
+            order_pizza.amount = 1;
             order_pizza.order_id = order.id;
 
             return View(order_pizza);

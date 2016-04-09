@@ -1,0 +1,1 @@
+ALTER TABLE `pizzariasognare.com.br`.`OrderPizza` ADD COLUMN `amount` FLOAT NOT NULL DEFAULT 1;

@@ -18,7 +18,10 @@ namespace WebApplication.Models
         public int order_id { get; set; }
 
         [Required(ErrorMessage = "A pizza é obrigatório.")]
-        public int pizza_id { get; set; }        
+        public int pizza_id { get; set; }
+
+        [Required(ErrorMessage = "A quantidade de pizza é obrigatória.")]
+        public float amount { get; set; }
 
         public Pizza Pizza;
 

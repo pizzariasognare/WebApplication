@@ -61,8 +61,8 @@ namespace WebApplication.Repositories
                 {
                     Pizza pizza = entities.Pizza.Where(p => p.id == order_pizza.pizza_id).FirstOrDefault();
                     Order order = entities.Order.Where(o => o.id == order_pizza.order_id).FirstOrDefault();
-                    order.price += pizza.price;
-                    order.final_price += pizza.price;
+                    order.price += (pizza.price * Convert.ToDecimal(order_pizza.amount));
+                    order.final_price += (pizza.price * Convert.ToDecimal(order_pizza.amount));
 
                     entities.Entry(order).State = EntityState.Modified;
                     entities.OrderPizza.Add(order_pizza);
@@ -90,8 +90,8 @@ namespace WebApplication.Repositories
                 {
                     Pizza pizza = entities.Pizza.Where(p => p.id == order_pizza.pizza_id).FirstOrDefault();
                     Order order = entities.Order.Where(o => o.id == order_pizza.order_id).FirstOrDefault();
-                    order.price -= pizza.price;
-                    order.final_price -= pizza.price;
+                    order.price -= (pizza.price * Convert.ToDecimal(order_pizza.amount));
+                    order.final_price -= (pizza.price * Convert.ToDecimal(order_pizza.amount));
 
                     entities.Entry(order).State = EntityState.Modified;
                     entities.Entry(order_pizza).State = EntityState.Deleted;

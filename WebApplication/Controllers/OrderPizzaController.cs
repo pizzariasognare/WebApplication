@@ -95,11 +95,6 @@ namespace WebApplication.Controllers
             }
 
             ReturnStatus return_status = this.order_pizza_service.Insert(order_pizza);
-            if (return_status.success)
-            {
-                return RedirectToAction("Details", "Order", new { id = order_pizza.order_id });
-            }
-
             ModelState.AddModelError("", return_status.message);
 
             return View(order_pizza);

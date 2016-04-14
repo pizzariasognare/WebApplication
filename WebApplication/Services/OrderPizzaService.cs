@@ -56,7 +56,7 @@ namespace WebApplication.Services
             }            
             
             return_status.success = true;
-            return_status.message = "Adicionado pizzao ao pedido com sucesso.";
+            return_status.message = "Pizza adicionada ao pedido.";
             return return_status;
         }
 

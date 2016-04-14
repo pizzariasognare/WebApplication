@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -31,7 +32,7 @@ namespace WebApplication.Controllers
 
         [HttpGet]
         public ActionResult Index()
-        {            
+        {
             return View(this.order_service.GetOrdersToday());
         }
 
@@ -158,6 +159,49 @@ namespace WebApplication.Controllers
         public ActionResult DeliveredToday()
         {
             return View(this.order_service.GetTotalOrdersDeliveredToday());
+        }
+
+        public ActionResult Download(int id)
+        {
+            MemoryStream memoryStream = new MemoryStream();
+            TextWriter tw = new StreamWriter(memoryStream);
+
+            Order order = this.order_service.GetOrder(id);
+
+            tw.WriteLine(String.Format("Data: {0}", order.order_date.ToString("dd/MM/yyyy")));
+            tw.WriteLine(String.Format("Código: {0}", order.id));            
+            tw.WriteLine(String.Format("Cliente: {0}", order.CustomerAddress.Customer.name));
+            tw.WriteLine(String.Format("Endereço: {0}, {1}, {2}, {3}, {4}/{5}, {6}", order.CustomerAddress.address, order.CustomerAddress.number, order.CustomerAddress.complement, order.CustomerAddress.neighborhood, order.CustomerAddress.city, order.CustomerAddress.acronym_city, order.CustomerAddress.zip_code));
+            tw.WriteLine(String.Format("Referência: {0}", order.CustomerAddress.reference_point));
+
+            tw.WriteLine("");
+            int i = 1;
+            foreach (var order_pizza in order.OrderPizza)
+            {
+                tw.WriteLine(String.Format("Item {0}: {1} {2} de {3}", i, order_pizza.amount, order_pizza.Pizza.PizzaSize.name, order_pizza.Pizza.PizzaFlavor.name));
+                i++;
+            }
+
+            foreach (var order_drink in order.OrderDrink)
+            {
+                tw.WriteLine(String.Format("Item {0}: {1}", i, order_drink.Drink.name));
+                i++;
+            }
+            tw.WriteLine(String.Format("OBS: {0}", order.note));
+
+            tw.WriteLine("");
+            tw.WriteLine(String.Format("Forma de Pagamento: {0}", order.PaymentType.name));
+            tw.WriteLine(String.Format("Preço: R$ {0}", order.price));
+            tw.WriteLine(String.Format("Desconto: R$ {0}", order.discount));
+            tw.WriteLine(String.Format("Taxa de Entrega: R$ {0} ", order.delivery_price));
+            tw.WriteLine(String.Format("Preço Final: R$ {0}", order.final_price));
+            tw.WriteLine(String.Format("Pagamento: R$ {0}", order.payment));
+            tw.WriteLine(String.Format("Troco: R$ {0}", order.change));            
+
+            tw.Flush();
+            tw.Close();
+
+            return File(memoryStream.GetBuffer(), "text/plain", String.Format("Pedido{0}.txt", order.id));
         }
     }
 }

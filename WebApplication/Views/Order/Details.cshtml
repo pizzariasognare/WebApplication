@@ -83,6 +83,10 @@
                         <dd>
                             @Html.DisplayFor(model => model.CustomerAddress.Customer.name)
                         </dd>
+                        <dt>Telefone</dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.CustomerAddress.Customer.phone)
+                        </dd>
                         <dt>
                             CEP
                         </dt>
@@ -147,6 +151,7 @@
                             <th>Quantidade</th>
                             <th>Tamanho</th>
                             <th>Sabor</th>
+                            <th>OBS</th>
                             <th>Preço</th>
                             <th style="@(ViewBag.Modify ? "" : "display:none")"></th>
                         </tr>
@@ -165,6 +170,9 @@
                                     @Html.DisplayFor(modelItem => item.Pizza.PizzaFlavor.name)
                                 </td>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.note)
+                                </td>
+                                <td>
                                     R$ @Html.DisplayFor(modelItem => item.Pizza.price)
                                 </td>
                                 <td style="@(ViewBag.Modify ? "" : "display:none")">
@@ -176,7 +184,7 @@
                         @if (Model.OrderPizza.Count() == 0)
                         {
                             <tr>
-                                <td colspan="5">Nenhuma pizza adicionada ao pedido.</td>
+                                <td colspan="6">Nenhuma pizza adicionada ao pedido.</td>
                             </tr>
                         }
                     </tbody>

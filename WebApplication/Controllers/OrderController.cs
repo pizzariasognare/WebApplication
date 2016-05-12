@@ -171,14 +171,16 @@ namespace WebApplication.Controllers
             tw.WriteLine(String.Format("Data: {0}", order.order_date.ToString("dd/MM/yyyy")));
             tw.WriteLine(String.Format("Código: {0}", order.id));            
             tw.WriteLine(String.Format("Cliente: {0}", order.CustomerAddress.Customer.name));
+            tw.WriteLine(String.Format("Telefone: {0}", order.CustomerAddress.Customer.phone));
             tw.WriteLine(String.Format("Endereço: {0}, {1}, {2}, {3}, {4}/{5}, {6}", order.CustomerAddress.address, order.CustomerAddress.number, order.CustomerAddress.complement, order.CustomerAddress.neighborhood, order.CustomerAddress.city, order.CustomerAddress.acronym_city, order.CustomerAddress.zip_code));
             tw.WriteLine(String.Format("Referência: {0}", order.CustomerAddress.reference_point));
+            tw.WriteLine(String.Format("OBS: {0}", order.note));
 
             tw.WriteLine("");
             int i = 1;
             foreach (var order_pizza in order.OrderPizza)
             {
-                tw.WriteLine(String.Format("Item {0}: {1} {2} de {3}", i, order_pizza.amount, order_pizza.Pizza.PizzaSize.name, order_pizza.Pizza.PizzaFlavor.name));
+                tw.WriteLine(String.Format("Item {0}: {1} {2} de {3} ({4})", i, order_pizza.amount, order_pizza.Pizza.PizzaSize.name, order_pizza.Pizza.PizzaFlavor.name, order_pizza.note.ToUpper()));
                 i++;
             }
 
@@ -186,8 +188,7 @@ namespace WebApplication.Controllers
             {
                 tw.WriteLine(String.Format("Item {0}: {1}", i, order_drink.Drink.name));
                 i++;
-            }
-            tw.WriteLine(String.Format("OBS: {0}", order.note));
+            }            
 
             tw.WriteLine("");
             tw.WriteLine(String.Format("Forma de Pagamento: {0}", order.PaymentType.name));

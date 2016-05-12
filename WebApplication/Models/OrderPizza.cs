@@ -23,6 +23,9 @@ namespace WebApplication.Models
         [Required(ErrorMessage = "A quantidade de pizza é obrigatória.")]
         public float amount { get; set; }
 
+        [DataType(DataType.MultilineText)]
+        public string note { get; set; }
+
         public Pizza Pizza;
 
         public Order Order;

@@ -51,7 +51,7 @@ namespace WebApplication.Controllers
             List<SelectListItem> pizzas_items = new List<SelectListItem>();
             foreach (var pizza in pizzas)
             {
-                pizzas_items.Add(new SelectListItem { Value = Convert.ToString(pizza.id), Text = String.Format("{0} de {1}", pizza.PizzaSize.name, pizza.PizzaFlavor.name) });
+                pizzas_items.Add(new SelectListItem { Value = Convert.ToString(pizza.id), Text = String.Format("{0} - {1} - R$ {2}", pizza.PizzaFlavor.name, pizza.PizzaSize.name, pizza.price) });
             }
             ViewBag.pizza_id = pizzas_items;
 
@@ -83,7 +83,7 @@ namespace WebApplication.Controllers
             List<SelectListItem> pizzas_items = new List<SelectListItem>();
             foreach (var pizza in pizzas)
             {
-                pizzas_items.Add(new SelectListItem { Value = Convert.ToString(pizza.id), Text = String.Format("{0} de {1}", pizza.PizzaSize.name, pizza.PizzaFlavor.name) });
+                pizzas_items.Add(new SelectListItem { Value = Convert.ToString(pizza.id), Text = String.Format("{0} - {1} - R$ {2}", pizza.PizzaFlavor.name, pizza.PizzaSize.name, pizza.price) });
             }
             ViewBag.pizza_id = pizzas_items;
 

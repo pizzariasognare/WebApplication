@@ -48,6 +48,8 @@ namespace WebApplication.Controllers
 
             CustomerAddress customer_address = new CustomerAddress();
             customer_address.customer_id = customer.id;
+            customer_address.city = "Rio de Janeiro";
+            customer_address.acronym_city = "RJ";
 
             return View(customer_address);
         }

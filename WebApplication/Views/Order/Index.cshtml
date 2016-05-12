@@ -18,6 +18,7 @@
                     <tr>
                         <th>Código</th>
                         <th>Cliente</th>
+                        <th>Telefone</th>
                         <th>Status</th>                        
                         <th>Tempo</th>                        
                         <th></th>
@@ -34,10 +35,13 @@
                                 @Html.DisplayFor(modelItem => item.CustomerAddress.Customer.name)
                             </td>
                             <td>
+                                @Html.DisplayFor(modelItem => item.CustomerAddress.Customer.phone)
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.LastOrderLog.OrderStatus.description)
                             </td>                            
                             <td>
-                                @(DateTime.Now.Subtract(item.LastOrderLog.order_log_datetime).Minutes) min
+                                @(DateTime.Now.Subtract(item.LastOrderLog.order_log_datetime).Hours) h @(DateTime.Now.Subtract(item.LastOrderLog.order_log_datetime).Minutes) min
                             </td>                            
                             <td>
                                 <a href="@Url.Action("Details", "Order", new { id = item.id })" class="btn-sm btn-default" title="Visualizar pedido"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>

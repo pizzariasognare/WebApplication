@@ -19,21 +19,32 @@
             @using (Html.BeginForm())
             {
                 <div class="form-horizontal">
+
                     @Html.HiddenFor(model => model.order_id)                    
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.amount, "Quantidade", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-2">                                          
-                            @Html.EditorFor(model => model.amount, new { htmlAttributes = new { @class = "form-control", @maxlength = "11", } })                            
-                            @Html.ValidationMessageFor(model => model.amount, "", new { @class = "text-danger" })
+                        <label class="control-label col-md-2" for="amount">Quantidade</label>
+                        <div class="col-md-4">
+                            <span><input type="radio" id="amount_1" name="amount" value="1" checked> Inteira </span><br />
+                            <span><input type="radio" id="amount_05" name="amount" value="0.5"> 1/2 </span><br />
+                            <span><input type="radio" id="amount_033" name="amount" value="0.33"> 1/3 </span><br />
+                            <span><input type="radio" id="amount_025" name="amount" value="0.25"> 1/4 </span>                            
                         </div>
                     </div>
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.pizza_id, "Pizza", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             @Html.DropDownList("pizza_id", null, htmlAttributes: new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.pizza_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.note, "OBS", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.note, new { htmlAttributes = new { @class = "form-control", @maxlength = "255", @rows = "4" } })
+                            @Html.ValidationMessageFor(model => model.note, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
@@ -44,7 +55,7 @@
                             </button>
                         </div>
                     </div>
-                    @Html.ValidationSummary(true, "", new { @class = "text-success" })                    
+                    @Html.ValidationSummary(true, "", new { @class = "text-success" })
                 </div>
             }
         </div>

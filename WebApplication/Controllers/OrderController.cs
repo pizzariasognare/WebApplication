@@ -180,7 +180,7 @@ namespace WebApplication.Controllers
             int i = 1;
             foreach (var order_pizza in order.OrderPizza)
             {
-                tw.WriteLine(String.Format("Item {0}: {1} {2} de {3} ({4})", i, order_pizza.amount, order_pizza.Pizza.PizzaSize.name, order_pizza.Pizza.PizzaFlavor.name, order_pizza.note.ToUpper()));
+                tw.WriteLine(String.Format("Item {0}: {1} {2} de {3} ({4})", i, order_pizza.amount, order_pizza.Pizza.PizzaSize.name, order_pizza.Pizza.PizzaFlavor.name, order_pizza.note));
                 i++;
             }
 

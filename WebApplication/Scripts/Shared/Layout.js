@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+
     $('.datatable').DataTable({
         bLengthChange: false,
         language: {
@@ -23,7 +24,11 @@
                 "sSortAscending": ": Ordenar colunas de forma ascendente",
                 "sSortDescending": ": Ordenar colunas de forma descendente"
             }
-        }
+        },
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true
     });
 
     $('select').select2();

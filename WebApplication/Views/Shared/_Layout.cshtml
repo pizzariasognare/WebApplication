@@ -43,6 +43,7 @@
                             <div class="collapse navbar-collapse nav-wil" id="main-menu">
                                 <nav class="stroke">
                                     <ul class="nav navbar-nav">
+                                        <li><a href="https://www.ifood.com.br/pizzasognare/?Origem=SiteParceiro&produto=intermediario " class="hvr-underline-from-left"><img src="~/Images/ifood-icon-min.jpg" />&nbsp;&nbsp;&nbsp;iFood</a></li>
                                         <li>
                                             <a href="@Url.Action("Index", "PizzaFlavor")" class="hvr-underline-from-left"><span class="glyphicon glyphicon-th" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;Pizzas</a>
                                         </li>
@@ -57,10 +58,7 @@
                                         </li>
                                         <li style="@((User.Identity.IsAuthenticated) ? "" : "display:none")">
                                             <a href="@Url.Action("Index", "Order")" class="hvr-underline-from-left"><span class="glyphicon glyphicon-barcode" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;Pedidos</a>
-                                        </li>
-                                        <li style="@((User.Identity.IsAuthenticated) ? "" : "display:none")">
-                                            <a href="@Url.Action("DeliveredToday", "Order")" class="hvr-underline-from-left"><span class="glyphicon glyphicon-th" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;Entregas</a>
-                                        </li>
+                                        </li>                                        
                                         <li style="@((User.Identity.IsAuthenticated) ? "" : "display:none")">
                                             <a href="@Url.Action("Logout", "Auth")" class="hvr-underline-from-left"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;Sair</a>
                                         </li>

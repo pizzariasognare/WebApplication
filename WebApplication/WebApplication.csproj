@@ -319,6 +319,7 @@
     <Content Include="Scripts\Customer\EditUser.js" />
     <Content Include="Scripts\Customer\Edit.js" />
     <Content Include="Scripts\dataTables.bootstrap.min.js" />
+    <Content Include="Scripts\Home\Index.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />

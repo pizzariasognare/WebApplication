@@ -47,7 +47,7 @@ namespace WebApplication.Controllers
 
             ViewBag.Order = order;
 
-            List<Drink> drinks = this.drink_service.GetDrinks();
+            List<Drink> drinks = this.drink_service.GetDrinks(true);
             List<SelectListItem> drinks_items = new List<SelectListItem>();
             foreach (var drink in drinks)
             {
@@ -78,7 +78,7 @@ namespace WebApplication.Controllers
 
             ViewBag.Order = order;
 
-            List<Drink> drinks = this.drink_service.GetDrinks();
+            List<Drink> drinks = this.drink_service.GetDrinks(true);
             List<SelectListItem> drinks_items = new List<SelectListItem>();
             foreach (var drink in drinks)
             {

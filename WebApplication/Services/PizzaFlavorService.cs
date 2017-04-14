@@ -13,7 +13,7 @@ namespace WebApplication.Services
         /// Método retorna uma lista de sabores de pizzas.
         /// </summary>
         /// <returns>Lista de sabores de pizzas.</returns>
-        List<PizzaFlavor> GetPizzaFlavors();
+        List<PizzaFlavor> GetPizzaFlavors(bool? enabled);
     }
 
     public class PizzaFlavorService : IPizzaFlavorService
@@ -29,9 +29,9 @@ namespace WebApplication.Services
         /// Método retorna uma lista de sabores de pizzas.
         /// </summary>
         /// <returns>Lista de sabores de pizzas.</returns>
-        public List<PizzaFlavor> GetPizzaFlavors()
+        public List<PizzaFlavor> GetPizzaFlavors(bool? enabled)
         {
-            return this.pizza_flavor_repository.GetPizzaFlavors();
+            return this.pizza_flavor_repository.GetPizzaFlavors(enabled);
         }
     }
 }

@@ -8,12 +8,12 @@ using WebApplication.Repositories;
 namespace WebApplication.Services
 {
     public interface IDrinkService
-    {
+    {        
         /// <summary>
         /// Método retorna uma lista de bebidas.
         /// </summary>
         /// <returns>Lista de bebidas.</returns>
-        List<Drink> GetDrinks();
+        List<Drink> GetDrinks(bool? enabled);
     }
 
     public class DrinkService : IDrinkService
@@ -23,15 +23,15 @@ namespace WebApplication.Services
         public DrinkService(IDrinkRepository drink_repository)
         {
             this.drink_repository = drink_repository;
-        }
+        }        
 
         /// <summary>
         /// Método retorna uma lista de bebidas.
         /// </summary>
         /// <returns>Lista de bebidas.</returns>
-        public List<Drink> GetDrinks()
+        public List<Drink> GetDrinks(bool? enabled)
         {
-            return this.drink_repository.GetDrinks();
+            return this.drink_repository.GetDrinks(enabled);
         }
     }
 }

@@ -8,12 +8,12 @@ using WebApplication.Models;
 namespace WebApplication.Repositories
 {
     public interface IDrinkRepository
-    {
+    {        
         /// <summary>
         /// Método retorna uma lista de bebidas.
         /// </summary>
         /// <returns>Lista de bebidas.</returns>
-        List<Drink> GetDrinks();
+        List<Drink> GetDrinks(bool? enabled);
 
         /// <summary>
         /// Método retorna uma bebida.
@@ -30,19 +30,28 @@ namespace WebApplication.Repositories
         public DrinkRepository()
         {
             this.drink_type_repository = new DrinkTypeRepository();
-        }
+        }        
 
         /// <summary>
         /// Método retorna uma lista de bebidas.
         /// </summary>
         /// <returns>Lista de bebidas.</returns>
-        public List<Drink> GetDrinks()
+        public List<Drink> GetDrinks(bool? enabled)
         {
             List<Drink> drinks = new List<Drink>();
 
             using (Entities entities = new Entities())
             {
-                drinks = entities.Drink.OrderBy(d => d.id).ToList();
+                if (enabled.HasValue)
+                {
+                    short short_enabled = Convert.ToInt16(enabled.Value);
+                    drinks = entities.Drink.Where(d => d.enabled == short_enabled).OrderBy(d => d.name).ToList();
+                }
+                else
+                {
+                    drinks = entities.Drink.OrderBy(d => d.name).ToList();
+                }                
+                
 
                 foreach (var drink in drinks)
                 {

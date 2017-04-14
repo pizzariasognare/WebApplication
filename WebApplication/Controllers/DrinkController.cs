@@ -30,7 +30,7 @@ namespace WebApplication.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View(this.drink_service.GetDrinks());
+            return View(this.drink_service.GetDrinks(true));
         }
     }
 }

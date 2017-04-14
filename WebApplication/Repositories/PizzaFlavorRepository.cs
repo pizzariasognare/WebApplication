@@ -13,7 +13,7 @@ namespace WebApplication.Repositories
         /// Método retorna uma lista de sabores.
         /// </summary>
         /// <returns>Lista de sabores.</returns>
-        List<PizzaFlavor> GetPizzaFlavors();
+        List<PizzaFlavor> GetPizzaFlavors(bool? enabled);
 
         /// <summary>
         /// Método retorna um sabor.
@@ -36,13 +36,23 @@ namespace WebApplication.Repositories
         /// Método retorna uma lista de sabores.
         /// </summary>
         /// <returns>Lista de sabores.</returns>
-        public List<PizzaFlavor> GetPizzaFlavors()
+        public List<PizzaFlavor> GetPizzaFlavors(bool? enabled)
         {
             List<PizzaFlavor> pizza_flavors = new List<PizzaFlavor>();
 
             using (Entities entities = new Entities())
             {
-                List<PizzaFlavor> _pizza_flavors = entities.PizzaFlavor.OrderBy(p => p.id).ToList();
+                List<PizzaFlavor> _pizza_flavors = new List<PizzaFlavor>();
+
+                if (enabled.HasValue)
+                {
+                    short short_enabled = Convert.ToInt16(enabled.Value);
+                    _pizza_flavors = entities.PizzaFlavor.Where(p => p.enabled == short_enabled).OrderBy(p => p.id).ToList();
+                }
+                else
+                {
+                    _pizza_flavors = entities.PizzaFlavor.OrderBy(p => p.id).ToList();
+                }
 
                 foreach (var _pizza_flavor in _pizza_flavors)
                 {

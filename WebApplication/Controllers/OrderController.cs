@@ -204,5 +204,11 @@ namespace WebApplication.Controllers
 
             return File(memoryStream.GetBuffer(), "text/plain", String.Format("Pedido{0}.txt", order.id));
         }
+
+        [HttpGet]
+        public ActionResult CreateII()
+        {
+            return View();
+        }
     }
 }

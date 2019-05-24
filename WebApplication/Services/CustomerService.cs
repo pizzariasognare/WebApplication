@@ -50,6 +50,13 @@ namespace WebApplication.Services
         /// <param name="value">Valor da atualização</param>
         /// <returns>Objeto</returns>
         ReturnStatus SetEnabled(int id, short value);
+
+        /// <summary>
+        /// Método retorna um cliente pelo telefone.
+        /// </summary>
+        /// <param name="phone">Telefone do usuário.</param>
+        /// <returns>Objeto</returns>
+        Customer GetCustomerByPhone(string phone);
     }
 
     public class CustomerService : ICustomerService
@@ -176,5 +183,16 @@ namespace WebApplication.Services
             return_status.message = "Status atualizado com sucesso.";
             return return_status;
         }
+
+        /// <summary>
+        /// Método retorna um cliente pelo telefone.
+        /// </summary>
+        /// <param name="phone">Telefone do usuário</param>
+        /// <returns>Objeto</returns>
+        public Customer GetCustomerByPhone(string phone)
+        {
+            return this.customer_repository.GetCustomerByPhone(phone);
+        }
+
     }
 }

@@ -328,6 +328,7 @@
     <Content Include="Scripts\jquery.printElement.min.js" />
     <Content Include="Scripts\jquery.wmuSlider.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Order\CreateII.js" />
     <Content Include="Scripts\Order\Details.js" />
     <Content Include="Scripts\Order\Edit.js" />
     <Content Include="Scripts\respond.js" />
@@ -345,7 +346,9 @@
     </Content>
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -375,6 +378,7 @@
     <Content Include="Views\OrderDrink\Create.cshtml" />
     <Content Include="Views\OrderLog\Create.cshtml" />
     <Content Include="Views\Order\DeliveredToday.cshtml" />
+    <Content Include="Views\Order\CreateII.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

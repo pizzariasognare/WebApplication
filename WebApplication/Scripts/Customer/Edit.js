@@ -10,4 +10,5 @@
         var enabled = ($("#enabled-ckb").is(':checked') ? 1 : 0);
         $("#enabled").val(enabled);
     });
+
 });

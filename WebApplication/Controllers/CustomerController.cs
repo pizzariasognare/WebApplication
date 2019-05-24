@@ -11,7 +11,7 @@ using WebApplication.Repositories;
 using WebApplication.Services;
 
 namespace WebApplication.Controllers
-{    
+{
     public class CustomerController : AppController
     {
         private ICustomerService customer_service;
@@ -32,7 +32,7 @@ namespace WebApplication.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View(this.customer_service.GetCustomers());            
+            return View(this.customer_service.GetCustomers());
         }
 
         [HttpGet]
@@ -239,6 +239,12 @@ namespace WebApplication.Controllers
             ModelState.AddModelError("", return_status.message);
 
             return View(user);
+        }
+
+        [HttpGet]
+        public JsonResult GetCustomerByPhone(string phone)
+        {                                
+            return Json(this.customer_service.GetCustomerByPhone(phone), JsonRequestBehavior.AllowGet);
         }
     }
 }

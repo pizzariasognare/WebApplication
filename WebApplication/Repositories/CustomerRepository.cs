@@ -51,6 +51,13 @@ namespace WebApplication.Repositories
         /// <param name="customer">Objeto cliente</param>
         /// <returns>Status da atualização (Verdade ou falso)</returns>
         bool Update(Customer customer);
+
+        /// <summary>
+        /// Método retorna um cliente por telefone.
+        /// </summary>
+        /// <param name="phone">Phone</param>
+        /// <returns>Objeto</returns>
+        Customer GetCustomerByPhone(string phone);
     }
 
     public class CustomerRepository : ICustomerRepository
@@ -204,6 +211,33 @@ namespace WebApplication.Repositories
             {
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Método retorna um cliente por telefone.
+        /// </summary>
+        /// <param name="phone">Telefone do usuário</param>
+        /// <returns>Objeto</returns>
+        public Customer GetCustomerByPhone(string phone)
+        {
+            Customer customer = new Customer();
+
+            using (Entities entities = new Entities())
+            {
+                customer = entities.Customer.Where(c => c.phone.Contains(phone)).FirstOrDefault();
+
+                if (customer != null)
+                {
+                    if (customer.user_id.HasValue)
+                    {
+                        customer.User = this.user_repository.GetUser(customer.user_id.Value);
+                    }
+
+                    customer.CustomerAddress = this.customer_address_repository.GetCustomerAddresses(customer.id);
+                }
+            }
+
+            return customer;
         }
     }
 }
